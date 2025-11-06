@@ -4,12 +4,12 @@
   </div>
   
   <div class="categories-dropdown-container">
-    <select class="form-select">
+    <select class="form-select" (change)="onSelect($event)">
       <option value="" disabled selected>Categories</option>
-      <option value="courses">Courses</option>
-      <option value="course-prerequisites">Course Prerequisites</option>
-      <option value="students">Students</option>
-      <option value="enrollments">Enrollments</option>
+      <option value="/courses">Courses</option>
+      <option value="/course-prerequisites">Course Prerequisites</option>
+      <option value="/students">Students</option>
+      <option value="/enrollments">Enrollments</option>
     </select>
   </div>
 </div>  
