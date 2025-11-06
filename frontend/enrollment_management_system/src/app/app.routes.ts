@@ -11,6 +11,8 @@ export const routes: Routes = [
       .then(m => m.CoursesPage)
   },
   {
-    path: 'course'
+    path: 'course-prerequisites', loadComponent: () => import(
+      './course-prerequisites-page/course-prerequisites-page')
+        .then(m => m.CoursePrerequisitesPage)
   }
 ];
