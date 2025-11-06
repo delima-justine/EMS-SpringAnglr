@@ -5,6 +5,6 @@ export type Course = {
   units: number;
   lectureHours: number;
   labHours: number;
-  deptId: number;
+  departmentId: number;
   isDeleted: boolean;
 }
