@@ -20,8 +20,8 @@ public class Course {
     @Column(name = "course_title")
     private String courseTitle;
 
-    @Column(name = "unit")
-    private int unit;
+    @Column(name = "units")
+    private int units;
 
     @Column(name = "lecture_hours")
     private int lectureHours;
@@ -60,11 +60,11 @@ public class Course {
     }
 
     public int getUnit() {
-      return unit;
+      return units;
     }
 
-    public void setUnit(int unit) {
-      this.unit = unit;
+    public void setUnits(int units) {
+      this.units = units;
     }
     
     public int getLectureHours() {
