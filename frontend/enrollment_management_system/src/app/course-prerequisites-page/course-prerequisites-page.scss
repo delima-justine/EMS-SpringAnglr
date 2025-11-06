@@ -1,0 +1,41 @@
+$maroon-red: #662222;
+$page-margin-top: 100px;
+
+main {
+  padding: 15px 35px;
+  margin-top: $page-margin-top;
+  height: 100vh;
+
+  .title-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+}
+
+.table-container {
+  margin: 0 200px;
+}
+
+table.prerequisites-table thead th {
+  background-color: $maroon-red;
+  color: white;
+
+  th {
+    padding: 12px 15px;
+    background-color: $maroon-red;
+    color: white;
+    text-align: left;
+  }
+}
+
+.prerequisites-table {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.actions-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 1em;
+}
