@@ -27,6 +27,18 @@ main {
   gap: 1em;
 }
 
+.nav-links-container > div:hover .nav-link {
+  color: $nav-link-color;
+  transition: transform 0.3s ease-in-out;
+  transform: scale(1.05);
+}
+
+.nav-links-container > div:hover ng-icon,
+.nav-links-container > div:hover ng-icon * {
+  cursor: pointer;
+  color: $nav-link-color;
+}
+
 .course-nav-container {
   background-color: $nav-link-color;
   padding: 10px;
@@ -35,7 +47,7 @@ main {
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
-    color: black;
+    color: $nav-link-color;
     background-color: $hovered-nav-link-color;
   }
 }
@@ -48,7 +60,7 @@ main {
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
-    color: black;
+    color: $nav-link-color;
     background-color: $hovered-nav-link-color;
   }
 }
@@ -61,7 +73,7 @@ main {
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
-    color: black;
+    color: $nav-link-color;
     background-color: $hovered-nav-link-color;
   }
 }
@@ -74,7 +86,7 @@ main {
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
-    color: black;
+    color: $nav-link-color;
     background-color: $hovered-nav-link-color;
   }
 }
@@ -87,7 +99,7 @@ main {
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
-    color: black;
+    color: $nav-link-color;
     background-color: $hovered-nav-link-color;
   }
 }
@@ -100,7 +112,7 @@ main {
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
-    color: black;
+    color: $nav-link-color;
     background-color: $hovered-nav-link-color;
   }
 }
@@ -113,7 +125,7 @@ main {
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
-    color: black;
+    color: $nav-link-color;
     background-color: $hovered-nav-link-color;
   }
 }
@@ -126,7 +138,7 @@ main {
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
-    color: black;
+    color: $nav-link-color;
     background-color: $hovered-nav-link-color;
   }
 }
@@ -139,7 +151,7 @@ main {
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
-    color: black;
+    color: $nav-link-color;
     background-color: $hovered-nav-link-color;
   }
 }
@@ -152,7 +164,7 @@ main {
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
-    color: black;
+    color: $nav-link-color;
     background-color: $hovered-nav-link-color;
   }
 }
@@ -169,4 +181,8 @@ main {
   &:hover {
     color: $nav-link-color
   }
+}
+
+ng-icon {
+  color: white;
 }
