@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int courseId;
+    private Integer courseId;
 
     @Column(name = "course_code")
     private String courseCode;
@@ -35,11 +35,11 @@ public class Course {
     @Column(name = "is_deleted")
     private int isDeleted;
 
-    public int getCourseId() {
+    public Integer getCourseId() {
       return courseId;
     }
 
-    public void setCourseId(int courseId) {
+    public void setCourseId(Integer courseId) {
       this.courseId = courseId;
     }
 
