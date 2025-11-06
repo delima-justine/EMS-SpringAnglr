@@ -1,0 +1,36 @@
+$rich-black: #03071eff;
+$chocolate-cosmos: #370617ff;
+$rosewood: #6a040fff;
+$penn-red: #9d0208ff;
+$engineering-orange: #d00000ff;
+$sinopia: #dc2f02ff;
+$persimmon: #e85d04ff;
+$princeton-orange: #f48c06ff;
+$orange-web: #faa307ff;
+$selective-yellow: #ffba08ff;
+$dark-grey: #3333338a;
+
+.top-nav-container {
+  border-bottom: 1px solid $dark-grey;
+  padding: 15px 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.system-title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70px;
+
+  h4 {
+    font-weight: bold;
+    margin: 0
+  }
+}
+
+.categories-dropdown-container {
+  width: 200px;
+}
