@@ -1,13 +1,3 @@
-$rich-black: #03071eff;
-$chocolate-cosmos: #370617ff;
-$rosewood: #6a040fff;
-$penn-red: #9d0208ff;
-$engineering-orange: #d00000ff;
-$sinopia: #dc2f02ff;
-$persimmon: #e85d04ff;
-$princeton-orange: #f48c06ff;
-$orange-web: #faa307ff;
-$selective-yellow: #ffba08ff;
 $dark-grey: #3333338a;
 
 .top-nav-container {
@@ -17,6 +7,12 @@ $dark-grey: #3333338a;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background-color: white;
 }
 
 .system-title-container {
