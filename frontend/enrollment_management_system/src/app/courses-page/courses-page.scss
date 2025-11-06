@@ -1,0 +1,40 @@
+$rich-black: #03071eff;
+$chocolate-cosmos: #370617ff;
+$rosewood: #6a040fff;
+$penn-red: #9d0208ff;
+$engineering-orange: #d00000ff;
+$sinopia: #dc2f02ff;
+$persimmon: #e85d04ff;
+$princeton-orange: #f48c06ff;
+$orange-web: #faa307ff;
+$selective-yellow: #ffba08ff;
+$dark-grey: #3333338a;
+$maroon-red: #662222;
+
+main {
+  padding: 15px 35px;
+}
+
+table.courses-table thead {
+  background-color: $maroon-red;
+  color: white;
+
+  th {
+    padding: 12px 15px;
+    background-color: $maroon-red;
+    color: white;
+    text-align: left;
+  }
+}
+
+.courses-table {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.actions-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  gap: 1em;
+}
