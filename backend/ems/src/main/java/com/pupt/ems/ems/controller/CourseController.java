@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,5 +47,23 @@ public class CourseController {
     Course course = courseRepository.findById(id)
       .orElseThrow(() -> new ResourceNotFoundException("Course not found with id :" + id));
     return ResponseEntity.ok(course);
+  }
+
+  // Update Course by ID
+  @PutMapping("/courses/{id}")
+  public ResponseEntity<Course> updateCourse(@PathVariable Integer id, 
+      @RequestBody Course courseData) {
+    Course course = courseRepository.findById(id)
+      .orElseThrow(() -> new ResourceNotFoundException("Course not found with id :" + id));
+
+    course.setCourseCode(courseData.getCourseCode());
+    course.setCourseTitle(courseData.getCourseTitle());
+    course.setUnits(courseData.getUnits());
+    course.setLectureHours(courseData.getLectureHours());
+    course.setLabHours(courseData.getLabHours());
+    course.setDepartmentId(courseData.getDepartmentId());
+
+    Course updatedCourse = courseRepository.save(course);
+    return ResponseEntity.ok(updatedCourse);
   }
 }
