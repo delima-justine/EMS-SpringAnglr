@@ -21,19 +21,21 @@
       </thead>
       
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>CS101</td>
-          <td>Introduction to Computer Science</td>
-          <td>3</td>
-          <td>3</td>
-          <td>1</td>
-          <td>6</td>
-          <td class="actions-container">
-            <button class="btn btn-warning btn-sm">Edit</button>
-            <button class="btn btn-danger btn-sm">Delete</button>
-          </td>
-        </tr>
+        @for(course of courses(); track $index) {
+          <tr>
+            <td>{{ course.courseId }}</td>
+            <td>{{ course.courseCode }}</td>
+            <td>{{ course.courseTitle }}</td>
+            <td>{{ course.units }}</td>
+            <td>{{ course.lectureHours }}</td>
+            <td>{{ course.labHours }}</td>
+            <td>{{ course.deptId }}</td>
+            <td class="actions-container">
+              <button class="btn btn-warning btn-sm">Edit</button>
+              <button class="btn btn-danger btn-sm">Delete</button>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>
