@@ -1,0 +1,172 @@
+$nav-link-color: #662222;
+$hovered-nav-link-color: #FFC107;
+
+main {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+.title-wrapper {
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  padding: 20px;
+}
+
+.nav-links-container {
+  margin: 20px 50px;
+  display: grid;
+  grid-template-areas: 
+  "course-nav program-nav"
+  "course-nav-prereq room-nav"
+  "department-nav section-nav"
+  "enrollment-nav student-nav"
+  "instructor-nav term-nav";
+  gap: 1em;
+}
+
+.course-nav-container {
+  background-color: $nav-link-color;
+  padding: 10px;
+  border-radius: 10px;
+  grid-area: course-nav;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    color: black;
+    background-color: $hovered-nav-link-color;
+  }
+}
+
+.course-nav-prereq-container {
+  background-color: $nav-link-color;
+  padding: 10px;
+  border-radius: 10px;
+  grid-area: course-nav-prereq;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    color: black;
+    background-color: $hovered-nav-link-color;
+  }
+}
+
+.department-nav-container {
+  background-color: $nav-link-color;
+  padding: 10px;
+  border-radius: 10px;
+  grid-area: department-nav;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    color: black;
+    background-color: $hovered-nav-link-color;
+  }
+}
+
+.instructor-nav-container {
+  background-color: $nav-link-color;
+  padding: 10px;
+  border-radius: 10px;
+  grid-area: instructor-nav;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    color: black;
+    background-color: $hovered-nav-link-color;
+  }
+}
+
+.enrollment-nav-container {
+  background-color: $nav-link-color;
+  padding: 10px;
+  border-radius: 10px;
+  grid-area: enrollment-nav;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    color: black;
+    background-color: $hovered-nav-link-color;
+  }
+}
+  
+.program-nav-container {
+  background-color: $nav-link-color;
+  padding: 10px;
+  border-radius: 10px;
+  grid-area: program-nav;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    color: black;
+    background-color: $hovered-nav-link-color;
+  }
+}
+
+.room-nav-container {
+  background-color: $nav-link-color;
+  padding: 10px;
+  border-radius: 10px;
+  grid-area: room-nav;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    color: black;
+    background-color: $hovered-nav-link-color;
+  }
+}
+
+.section-nav-container {
+  background-color: $nav-link-color;
+  padding: 10px;
+  border-radius: 10px;
+  grid-area: section-nav;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    color: black;
+    background-color: $hovered-nav-link-color;
+  }
+}
+
+.student-nav-container {
+  background-color: $nav-link-color;
+  padding: 10px;
+  border-radius: 10px;
+  grid-area: student-nav;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    color: black;
+    background-color: $hovered-nav-link-color;
+  }
+}
+
+.term-nav-container {
+  background-color: $nav-link-color;
+  padding: 10px;
+  border-radius: 10px;
+  grid-area: term-nav;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    color: black;
+    background-color: $hovered-nav-link-color;
+  }
+}
+
+.nav-link {
+  color: white;
+  padding: 10px;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: start;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: $nav-link-color
+  }
+}
