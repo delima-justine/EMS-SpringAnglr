@@ -59,7 +59,7 @@ public class Course {
       this.courseTitle = courseTitle;
     }
 
-    public int getUnit() {
+    public int getUnits() {
       return units;
     }
 
