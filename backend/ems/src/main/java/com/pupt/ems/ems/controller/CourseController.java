@@ -74,7 +74,7 @@ public class CourseController {
     Course course = courseRepository.findById(id)
       .orElseThrow(() -> new ResourceNotFoundException("Course not found with id :" + id));
 
-      courseRepository.delete(course);
+      courseRepository.softDeleteById(id);
       Map<String, Boolean> response = new HashMap<>();
       response.put("deleted", Boolean.TRUE);
       return ResponseEntity.ok(response);
