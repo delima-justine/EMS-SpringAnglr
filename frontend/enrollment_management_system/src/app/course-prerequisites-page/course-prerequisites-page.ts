@@ -24,4 +24,12 @@ export class CoursePrerequisitesPage implements OnInit {
         this.coursePrerequisites.set(prereqData);
     });
   }
+
+  deleteCoursePrerequisite(courseId: number, prereqCourseId: number) {
+    this.coursePrereqService.deleteCoursePrerequisite(courseId, prereqCourseId)
+    .subscribe(coursePrerequisiteData => {
+      console.log(coursePrerequisiteData);
+      this.getCoursePrerequisites();
+    })
+  }
 }

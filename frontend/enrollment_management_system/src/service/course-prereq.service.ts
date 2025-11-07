@@ -17,4 +17,10 @@ export class CoursePrereqService {
   addCoursePrerequisite(prereq: CoursePrerequisite): Observable<CoursePrerequisite> {
     return this.http.post<CoursePrerequisite>(this.coursePrereqUrl, prereq);
   }
+
+  deleteCoursePrerequisite(courseId: number, prereqCourseId: number): Observable<CoursePrerequisite> {
+    return this.http.delete<CoursePrerequisite>(
+      `${this.coursePrereqUrl}/${courseId}/${prereqCourseId}`
+    );
+  }
 }

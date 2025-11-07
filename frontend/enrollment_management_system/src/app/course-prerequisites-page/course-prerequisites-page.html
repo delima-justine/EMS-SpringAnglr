@@ -33,7 +33,11 @@
             <td>{{ coursePrereq.id.prereqCourseId}}</td>
             <td class="actions-container">
               <button class="btn btn-warning btn-sm">Edit</button>
-              <button class="btn btn-danger btn-sm">Delete</button>
+              <button
+                type="button"
+                (click)="deleteCoursePrerequisite(
+                    coursePrereq.id.courseId, coursePrereq.id.prereqCourseId)" 
+                class="btn btn-danger btn-sm">Delete</button>
             </td>
           </tr>
         }
