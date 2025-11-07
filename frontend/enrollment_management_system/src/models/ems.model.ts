@@ -14,5 +14,5 @@ export type CoursePrerequisite = {
     courseId: number;
     prereqCourseId: number;
   },
-  isDeleted?: boolean;
+  isDeleted?: number;
 }
