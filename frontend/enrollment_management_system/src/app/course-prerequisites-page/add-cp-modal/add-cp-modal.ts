@@ -7,6 +7,8 @@ import {
         Validators
       } from '@angular/forms';
 import { Modal } from 'bootstrap';
+import { CoursePrereqService } from '../../../service/course-prereq.service';
+import { CoursePrerequisite } from '../../../models/ems.model';
 
 @Component({
   selector: 'app-add-cp-modal',
@@ -18,11 +20,15 @@ export class AddCpModal {
   @ViewChild('addCoursePrereqModal') addCoursePrereqModal!: ElementRef;
   coursePrereqForm: FormGroup;
   formBuilder = inject(FormBuilder);
+  coursePrereqService = inject(CoursePrereqService);
 
   constructor() {
     this.coursePrereqForm = this.formBuilder.group({
-      courseId: [''],
-      prerequisiteId: ['']
+      id: this.formBuilder.group ({
+        courseId: [''],
+        prereqCourseId: ['']
+      }),
+      isDeleted: [0],
     });
   }
 
@@ -38,7 +44,11 @@ export class AddCpModal {
   }
 
   addCoursePrerequisite() {
-    console.log(this.coursePrereqForm.value);
-    console.log(this.coursePrereqForm.valid);
+    this.coursePrereqService.addCoursePrerequisite(this.coursePrereqForm.value)
+      .subscribe((created: CoursePrerequisite) => {
+        console.log(created);
+        this.coursePrereqForm.reset();
+      });
+    // console.log(this.coursePrereqForm.value);
   }
 }

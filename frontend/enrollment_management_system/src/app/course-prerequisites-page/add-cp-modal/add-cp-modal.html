@@ -17,24 +17,26 @@
 
         <div class="modal-body">
           <form [formGroup]="coursePrereqForm">
-            <div class="mb-3">
-              <label for="course_code">Course ID</label>
-              <input 
-                type="number" 
-                id="course_code" 
-                formControlName="courseId" 
-                class="form-control"
-                min="0"/>
-            </div>
+            <div formGroupName="id">
+                <div class="mb-3">
+                <label for="course_code">Course ID</label>
+                <input 
+                  type="number" 
+                  id="course_code" 
+                  formControlName="courseId" 
+                  class="form-control"
+                  min="0"/>
+              </div>
 
-            <div class="mb-3">
-              <label for="course_title">Course Prerequisite ID</label>
-              <input 
-                type="number" 
-                id="course_title" 
-                formControlName="prerequisiteId" 
-                class="form-control"
-                min="0"/>
+              <div class="mb-3">
+                <label for="course_title">Course Prerequisite ID</label>
+                <input 
+                  type="number" 
+                  id="course_title" 
+                  formControlName="prereqCourseId" 
+                  class="form-control"
+                  min="0"/>
+              </div>
             </div>
           </form>
         </div>
