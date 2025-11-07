@@ -8,3 +8,11 @@ export type Course = {
   departmentId: number;
   isDeleted?: boolean;
 }
+
+export type CoursePrerequisite = {
+  id: {
+    courseId: number;
+    prereqCourseId: number;
+  },
+  isDeleted?: boolean;
+}
