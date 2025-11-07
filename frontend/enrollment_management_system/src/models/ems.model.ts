@@ -1,5 +1,5 @@
 export type Course = {
-  courseId?: string;
+  courseId?: number;
   courseCode: string;
   courseTitle: string;
   units: number;
