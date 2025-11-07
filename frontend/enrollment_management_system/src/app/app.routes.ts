@@ -11,11 +11,6 @@ export const routes: Routes = [
       .then(m => m.CoursesPage)
   },
   {
-    path: 'courses/:courseId', loadComponent: () => import(
-      './courses-page/courses-page')
-        .then(m => m.CoursesPage)
-  },
-  {
     path: 'course-prerequisites', loadComponent: () => import(
       './course-prerequisites-page/course-prerequisites-page')
         .then(m => m.CoursePrerequisitesPage)
