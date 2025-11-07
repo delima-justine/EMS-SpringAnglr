@@ -56,4 +56,13 @@ export class CoursesPage implements OnInit, AfterViewInit {
       course.courseId === updatedCourse.courseId ? updatedCourse : course
     ));
   }
+
+  deleteCourse(courseId: number) {
+    this.backendService.deleteCourse(courseId)
+      .subscribe(() => {
+        this.courses.update(
+            list => list.filter(course => course.courseId !== courseId)
+        );
+      })
+  }
 }

@@ -25,4 +25,8 @@ export class Backend {
   updateCourse(id: number, course: Course): Observable<Course> {
     return this.http.put<Course>(`${this.courseUrl}/${id}`, course);
   }
+
+  deleteCourse(id: number): Observable<Course> {
+    return this.http.delete<Course>(`${this.courseUrl}/${id}`);
+  }
 }
