@@ -13,12 +13,11 @@
           <button 
             type="button" 
             class="btn-close" 
-            data-bs-dismiss="modal" 
-            aria-label="Close"></button>
+            (click)="closeModal()"></button>
         </div>
 
         <div class="modal-body">
-          <form>
+          <form [formGroup]="courseForm">
             <div class="mb-3">
               <label for="course_code">Course Code</label>
               <input 
@@ -81,12 +80,13 @@
           <button 
             type="button" 
             class="btn btn-secondary" 
-            data-bs-dismiss="modal">
+            (click)="closeModal()">
               Close
           </button>
           <button 
             type="button"
             class="btn btn-primary"
+            (click)="addCourse()"
             data-bs-dismiss="modal">
               Save
           </button>
@@ -95,4 +95,9 @@
     </div>
 </div>
 
-<button type="button" (click)="openModal()">Open Modal</button>
+<button 
+  class="btn btn-primary" 
+  type="button" 
+  (click)="openModal()">
+    Add Course
+</button>
