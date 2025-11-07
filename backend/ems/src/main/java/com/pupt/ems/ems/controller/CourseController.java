@@ -71,6 +71,7 @@ public class CourseController {
   // Delete Course by ID
   @DeleteMapping("/courses/{id}")
   public ResponseEntity<Map<String, Boolean>> deleteCourse(@PathVariable Integer id) {
+    @SuppressWarnings("unused")
     Course course = courseRepository.findById(id)
       .orElseThrow(() -> new ResourceNotFoundException("Course not found with id :" + id));
 
