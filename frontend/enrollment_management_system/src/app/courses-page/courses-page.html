@@ -41,12 +41,9 @@
             <td>{{ course.labHours }}</td>
             <td>{{ course.departmentId }}</td>
             <td class="actions-container">
-              <button 
-                data-bs-toggle="modal"
-                data-bs-target="#update_course_modal"
-                class="btn btn-warning btn-sm">
-                  Edit
-              </button>
+              <app-update-modal 
+                [courseId]="course.courseId!"
+                (updateCourseResponse)="onCourseUpdated($event)"></app-update-modal>
               <button class="btn btn-danger btn-sm">Delete</button>
             </td>
           </tr>
@@ -55,101 +52,3 @@
     </table>
   </div>
 </main>
-
-<!-- Create & Update Modals -->
-<!-- <div 
-  class="modal fade" 
-  id="update_course_modal"
-  data-bs-backdrop="static"
-  data-bs-keyboard="false"
-  tabindex="-1">
-    <div class="modal-dialog modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Update Course</h5>
-          <button 
-            type="button" 
-            class="btn-close" 
-            (click)="closeUpdateCourseModal('/courses')"
-            data-bs-dismiss="modal" 
-            aria-label="Close"></button>
-        </div>
-
-        <div class="modal-body">
-          <form [formGroup]="courseForm">
-            <div class="mb-3">
-              <label for="course_code">Course Code</label>
-              <input 
-                type="text" 
-                id="course_code" 
-                formControlName="courseCode" 
-                class="form-control"/>
-            </div>
-
-            <div class="mb-3">
-              <label for="course_title">Course Title</label>
-              <input 
-                type="text" 
-                id="course_title" 
-                formControlName="courseTitle" 
-                class="form-control"/>
-            </div>
-
-            <div class="mb-3">
-              <label for="units">Units</label>
-              <input 
-                type="number" 
-                id="units" 
-                formControlName="units" 
-                class="form-control"
-                min="0"/>
-            </div>
-
-            <div class="mb-3">
-              <label for="lecture_hours">Lecture Hours</label>
-              <input 
-                type="number" 
-                id="lecture_hours" 
-                formControlName="lectureHours" 
-                class="form-control"
-                min="0"/>
-            </div>
-
-            <div class="mb-3">
-              <label for="lab_hours">Lab Hours</label>
-              <input 
-                type="number" 
-                id="lab_hours" 
-                formControlName="labHours" 
-                class="form-control"
-                min="0"/>
-            </div>
-
-            <div class="mb-3">
-              <label for="department_id">Department ID</label>
-              <select formControlName="departmentId" class="form-select">
-                <option selected disabled>Select Department</option>
-                <option value="6">College of Computer Information Sciences</option>
-              </select>
-            </div>
-          </form>
-        </div>
-
-        <div class="modal-footer">
-          <button 
-            type="button" 
-            (click)="closeUpdateCourseModal('/courses')"
-            class="btn btn-secondary" 
-            data-bs-dismiss="modal">
-              Close
-          </button>
-          <button 
-            type="button"
-            class="btn btn-primary"
-            data-bs-dismiss="modal">
-              Update
-          </button>
-        </div>
-      </div>
-    </div>
-</div> -->

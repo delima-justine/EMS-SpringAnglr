@@ -11,34 +11,33 @@ import {
       } from '@angular/forms';
 import { ActivatedRoute, Router } from "@angular/router";
 import { AddModal } from "./add-modal/add-modal";
+import { UpdateModal } from "./update-modal/update-modal";
 
 @Component({
   selector: 'app-courses-page',
-  imports: [TopNav, ReactiveFormsModule, AddModal],
+  imports: [TopNav, ReactiveFormsModule, AddModal, UpdateModal],
   templateUrl: './courses-page.html',
   styleUrl: './courses-page.scss',
 })
 export class CoursesPage implements OnInit, AfterViewInit {
   courses = signal(<Course[]>[]);
-  courseId = signal<number>(0);
+  courseIdSent = signal<number>(0);
   backendService = inject(Backend);
   router = inject(Router);
   activatedRoute = inject(ActivatedRoute);
 
+  // On component initialization, set up route param 
+  // subscription and fetch courses
   ngOnInit(): void {
-    // react to route param changes
-    this.activatedRoute.paramMap.subscribe(params => {
-      const idStr = params.get('courseId');
-      this.courseId.set(idStr ? Number(idStr) : 0);
-    });
-
     this.getCourses();
   }
 
+  // After the view initializes, fetch the courses
   ngAfterViewInit(): void {
     this.getCourses();
   }
 
+  // Fetches the list of courses from the backend
   getCourses() {
     this.backendService.getCourses()
       .subscribe(coursesData => {
@@ -46,12 +45,15 @@ export class CoursesPage implements OnInit, AfterViewInit {
     });
   }
 
+  // Adds the newly created course to the courses list
   onCourseSaved(createdCourse: Course) {
     this.courses.update(list => [...list, createdCourse]);
   }
 
-  // closeUpdateCourseModal(previousRoute: string) {
-  //   this.router.navigate([ previousRoute || '/courses']);
-  //   this.courseForm.reset();
-  // }
+  // Updates the course in the courses list after an update
+  onCourseUpdated(updatedCourse: Course) {
+    this.courses.update(list => list.map(course => 
+      course.courseId === updatedCourse.courseId ? updatedCourse : course
+    ));
+  }
 }

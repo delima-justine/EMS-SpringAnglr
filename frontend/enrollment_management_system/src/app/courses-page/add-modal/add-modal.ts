@@ -59,29 +59,4 @@ export class AddModal {
         this.response.emit(created);
       });
   }
-  
-  // openUpdateCourseModal(courseId?: number) {
-  //   if (!courseId) return;
-
-  //   // set the signal immediately so the template/modal can use it right away
-  //   this.courseId.set(courseId);
-
-  //   // update the URL (navigation is async; we already set the signal)
-  //   this.router.navigate(['/courses', courseId]);
-
-  //   console.log("Course ID (clicked):", this.courseId());
-
-  //   this.backendService.getCourseById(courseId)
-  //     .subscribe(courseData => {
-  //       console.log("Fetched course data:", courseData);
-  //       this.courseForm.setValue({
-  //         courseCode: courseData.courseCode,
-  //         courseTitle: courseData.courseTitle,
-  //         units: courseData.units,
-  //         lectureHours: courseData.lectureHours,
-  //         labHours: courseData.labHours,
-  //         departmentId: courseData.departmentId,
-  //       })
-  //     });
-  // }
 }

@@ -21,4 +21,8 @@ export class Backend {
   getCourseById(id: number): Observable<Course> {
     return this.http.get<Course>(`${this.courseUrl}/${id}`);
   }
+
+  updateCourse(id: number, course: Course): Observable<Course> {
+    return this.http.put<Course>(`${this.courseUrl}/${id}`, course);
+  }
 }
