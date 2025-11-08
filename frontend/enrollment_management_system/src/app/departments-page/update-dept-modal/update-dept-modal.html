@@ -1,1 +1,62 @@
-<p>update-dept-modal works!</p>
+<!-- Update Course Modal -->
+<div 
+  #updateDepartmentModal
+  class="modal fade" 
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Department</h5>
+          <button 
+            type="button" 
+            class="btn-close" 
+            (click)="closeModal()"></button>
+        </div>
+
+        <div class="modal-body">
+          <form [formGroup]="departmentForm">
+            <div class="mb-3">
+              <label for="dept_code">Department Code</label>
+              <input 
+                type="text" 
+                id="dept_code" 
+                formControlName="departmentCode" 
+                class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="dept_name">Department Name</label>
+              <input 
+                type="text" 
+                id="dept_name" 
+                formControlName="departmentName" 
+                class="form-control"/>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button 
+            type="button" 
+            class="btn btn-secondary" 
+            (click)="closeModal()">
+              Close
+          </button>
+          <button 
+            type="button"
+            class="btn btn-primary"
+            (click)="updateDepartment()">
+              Update
+          </button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<button 
+  class="btn btn-warning"
+  (click)="openUpdateDepartmentModal()">
+    Edit
+</button>

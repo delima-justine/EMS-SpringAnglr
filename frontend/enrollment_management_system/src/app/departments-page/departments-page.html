@@ -33,8 +33,14 @@
             <td>{{ department.departmentCode }}</td>
             <td>{{ department.departmentName }}</td>
             <td class="actions-container">
-              <button class="btn btn-warning">Edit</button>
-              <button class="btn btn-danger">Delete</button>
+              <app-update-dept-modal 
+                [departmentId]="department.departmentId!"
+                (response)="onDepartmentUpdated($event)"/>
+              <button 
+                (click)="deleteDepartment(department.departmentId!)"
+                class="btn btn-danger">
+                  Delete
+              </button>
             </td>
          </tr>
         }

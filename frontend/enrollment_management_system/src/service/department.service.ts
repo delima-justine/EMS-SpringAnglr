@@ -14,6 +14,10 @@ export class DepartmentService {
     return this.http.get<Department[]>(this.deptUrl);
   }
 
+  getDepartmentById(id: number): Observable<Department> {
+    return this.http.get<Department>(`${this.deptUrl}/${id}`);
+  }
+
   addDepartment(department: Department) {
     return this.http.post<Department>(this.deptUrl, department);
   }
