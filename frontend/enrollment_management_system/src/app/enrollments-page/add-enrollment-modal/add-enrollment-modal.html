@@ -1,0 +1,92 @@
+<!-- Add Enrollment Modal -->
+<div 
+  #addEnrollmentModal
+  class="modal fade" 
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Enrollment</h5>
+          <button 
+            type="button" 
+            class="btn-close"
+            (click)="closeModal()"></button>
+        </div>
+
+        <div class="modal-body">
+          <form [formGroup]="enrollmentForm">
+            <div class="mb-3">
+              <label for="student_id">Student ID</label>
+              <input 
+                type="number" 
+                id="student_id" 
+                formControlName="studentId" 
+                class="form-control"
+                min="0"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="section_id">Section ID</label>
+              <input 
+                type="number" 
+                id="section_id" 
+                formControlName="sectionId" 
+                class="form-control"
+                min="0"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="date_enrolled">Date Enrolled</label>
+              <input 
+                type="date" 
+                id="date_enrolled" 
+                formControlName="dateEnrolled" 
+                class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="status">Status</label>
+              <input 
+                type="text" 
+                id="status" 
+                formControlName="status" 
+                class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="letter_grade">Letter Grade</label>
+              <input 
+                type="text" 
+                id="letter_grade" 
+                formControlName="letterGrade" 
+                class="form-control"/>  
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button 
+            type="button" 
+            class="btn btn-secondary"
+            (click)="closeModal()">
+              Close
+          </button>
+          <button 
+            type="button"
+            class="btn btn-primary"
+            (click)="addEnrollment()">
+              Save
+          </button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<button 
+  class="btn btn-primary" 
+  type="button"
+  (click)="openModal()">
+    Add Enrollment
+</button>
