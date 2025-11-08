@@ -24,4 +24,9 @@ export class DepartmentsPage implements OnInit {
         this.departments.set(departmentsData);
       })
   }
+
+  // Updates the departments list through the child component's output
+  onDepartmentAdded(createdDepartment: Department) {
+    this.departments.update(list => [...list, createdDepartment]);
+  }
 }

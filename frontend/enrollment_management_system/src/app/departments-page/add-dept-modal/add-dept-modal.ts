@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, output, ViewChild } from '@angular/core';
 import { 
         ReactiveFormsModule,
         FormGroup,
@@ -7,6 +7,8 @@ import {
         Validators
       } from '@angular/forms';
 import { Modal } from 'bootstrap';
+import { DepartmentService } from '../../../service/department.service';
+import { Department } from '../../../models/ems.model';
 
 @Component({
   selector: 'app-add-dept-modal',
@@ -18,6 +20,8 @@ export class AddDeptModal {
   @ViewChild('addDepartmentModal') addDepartmentModal!: ElementRef;
   departmentForm: FormGroup;
   formBuilder = inject(FormBuilder);
+  departmentService = inject(DepartmentService);
+  response = output<Department>();
 
   constructor() {
     this.departmentForm = this.formBuilder.group({
@@ -40,7 +44,11 @@ export class AddDeptModal {
 
   addDepartment() {
     //logic for creating data entry
-    console.log(this.departmentForm.value);
-    this.departmentForm.reset();
+    this.departmentService.addDepartment(this.departmentForm.value)
+      .subscribe((createdDepartment: Department) => {
+        this.departmentForm.reset();
+        this.closeModal();
+        this.response.emit(createdDepartment);
+      })
   }
 }

@@ -12,4 +12,8 @@ export class DepartmentService {
   getDepartments() {
     return this.http.get<Department[]>(this.deptUrl);
   }
+
+  addDepartment(department: Department) {
+    return this.http.post<Department>(this.deptUrl, department);
+  }
 }

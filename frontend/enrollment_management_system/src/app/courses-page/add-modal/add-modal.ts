@@ -9,7 +9,6 @@ import {
         Validators
       } from '@angular/forms';
 import { Backend } from '../../../service/backend';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Course } from '../../../models/ems.model';
 
 @Component({
@@ -25,8 +24,6 @@ export class AddModal {
   courseForm: FormGroup;
   backendService = inject(Backend);
   formBuilder = inject(FormBuilder);
-  router = inject(Router);
-  activatedRoute = inject(ActivatedRoute);
 
   constructor() {
     this.courseForm = this.formBuilder.group({
