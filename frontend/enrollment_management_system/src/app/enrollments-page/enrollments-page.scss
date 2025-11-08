@@ -1,0 +1,20 @@
+@use '../../styles/mixins' as m;
+
+$top-nav-size: 100px;
+$maroon-red: #662222;
+
+main {
+  @include m.main;
+}
+
+table.ems-table thead th {
+  @include m.table-styles($maroon-red);
+}
+
+table.ems-table {
+  @include m.table-border;
+}
+
+.actions-container {
+  @include m.actions-container;
+}
