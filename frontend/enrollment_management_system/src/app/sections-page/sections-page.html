@@ -1,1 +1,46 @@
-<p>sections-page works!</p>
+<app-top-nav/>
+
+<main>
+  <div class="title-container">
+    <h1>Section Management</h1>
+  </div>
+
+  <div class="table-container">
+    <table class="table table-striped table-bordered ems-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Section Code</th>
+          <th>Course ID</th>
+          <th>Term ID</th>
+          <th>Instructor ID</th>
+          <th>Day</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Room ID</th>
+          <th>Max Capacity</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>DIT-TG</td>
+          <td>25</td>
+          <td>2023-01-01</td>
+          <td>1</td>
+          <td>Monday</td>
+          <td>09:00 AM</td>
+          <td>10:30 AM</td>
+          <td>1</td>
+          <td>36</td>
+          <td class="actions-container">
+            <button class="btn btn-primary">Edit</button>
+            <button class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>

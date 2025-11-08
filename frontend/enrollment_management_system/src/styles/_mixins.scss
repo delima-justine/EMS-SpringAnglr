@@ -12,6 +12,11 @@ $maroon-red: #662222;
   }
 }
 
+// For Smaller Tables
+@mixin sm-tbl {
+  margin: 0 100px;
+}
+
 @mixin table-styles($columns-color) {
   background-color: $columns-color;
   padding: 12px 15px;

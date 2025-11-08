@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { TopNav } from "../top-nav/top-nav";
 
 @Component({
   selector: 'app-sections-page',
-  imports: [],
+  imports: [TopNav],
   templateUrl: './sections-page.html',
   styleUrl: './sections-page.scss',
 })

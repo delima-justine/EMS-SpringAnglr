@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { TopNav } from "../top-nav/top-nav";
 
 @Component({
   selector: 'app-instructors-page',
-  imports: [],
+  imports: [TopNav],
   templateUrl: './instructors-page.html',
   styleUrl: './instructors-page.scss',
 })
