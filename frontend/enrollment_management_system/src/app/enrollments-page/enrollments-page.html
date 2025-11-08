@@ -20,18 +20,20 @@
       </thead>
 
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>2</td>
-          <td>DIT-TG</td>
-          <td>2023-01-15</td>
-          <td>Active</td>
-          <td>A</td>
-          <td class="actions-container">
-            <button class="btn btn-primary">Edit</button>
-            <button class="btn btn-danger">Delete</button>
-          </td>
-        </tr>
+        @for(enrollment of enrollments(); track $index) {
+          <tr>
+            <td>{{ enrollment.enrollmentId }}</td>
+            <td>{{ enrollment.studentId }}</td>
+            <td>{{ enrollment.sectionId }}</td>
+            <td>{{ enrollment.dateEnrolled }}</td>
+            <td>{{ enrollment.status }}</td>
+            <td>{{ enrollment.letterGrade }}</td>
+            <td class="actions-container">
+              <button class="btn btn-primary">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>
