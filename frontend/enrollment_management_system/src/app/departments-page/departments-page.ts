@@ -2,10 +2,11 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { TopNav } from "../top-nav/top-nav";
 import { Department } from '../../models/ems.model';
 import { DepartmentService } from '../../service/department.service';
+import { AddDeptModal } from "./add-dept-modal/add-dept-modal";
 
 @Component({
   selector: 'app-departments-page',
-  imports: [TopNav],
+  imports: [TopNav, AddDeptModal],
   templateUrl: './departments-page.html',
   styleUrl: './departments-page.scss',
 })
