@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,5 +43,18 @@ public class DepartmentController {
     Department department = departmentRepository.findById(id)
       .orElseThrow(() -> new ResourceNotFoundException("Department not found, id: " + id));
     return ResponseEntity.ok(department);
+  }
+
+  // Update Department
+  @PutMapping(value = "/departments/{id}")
+  public ResponseEntity<Department> updateDepartment
+    (@PathVariable Integer id, @RequestBody Department department) 
+  {
+    Department existingDepartment = departmentRepository.findById(id)
+      .orElseThrow(() -> new ResourceNotFoundException("Department not found, id: " + id));
+    existingDepartment.setDepartmentName(department.getDepartmentName());
+    existingDepartment.setDepartmentCode(department.getDepartmentCode());
+    departmentRepository.save(existingDepartment);
+    return ResponseEntity.ok(existingDepartment);
   }
 }
