@@ -19,7 +19,7 @@ import com.pupt.ems.ems.exception.ResourceNotFoundException;
 import com.pupt.ems.ems.model.Enrollment;
 import com.pupt.ems.ems.repository.EnrollmentRepository;
 
-@CrossOrigin(origins = "https://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api")
 public class EnrollmentController {
