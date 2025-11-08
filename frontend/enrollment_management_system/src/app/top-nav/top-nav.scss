@@ -25,6 +25,10 @@ $dark-grey: #3333338a;
     font-weight: bold;
     margin: 0
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .categories-dropdown-container {
