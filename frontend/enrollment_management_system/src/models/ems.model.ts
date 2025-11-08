@@ -16,3 +16,10 @@ export type CoursePrerequisite = {
   },
   isDeleted?: number;
 }
+
+export type Department = {
+  departmentId?: number;
+  departmentCode: string;
+  departmentName: string;
+  deleted?: boolean;
+}
