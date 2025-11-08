@@ -23,3 +23,13 @@ export type Department = {
   departmentName: string;
   deleted?: boolean;
 }
+
+export type Enrollment = {
+  enrollmentId?: number;
+  studentId: number;
+  sectionId: number;
+  dateEnrolled: string;
+  status: string;
+  letterGrade: string;
+  isDeleted?: boolean;
+}
