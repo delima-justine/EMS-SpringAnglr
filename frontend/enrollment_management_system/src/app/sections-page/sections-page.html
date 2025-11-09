@@ -47,7 +47,9 @@
             <td>{{ section.roomId }}</td>
             <td>{{ section.maxCapacity }}</td>
             <td class="actions-container">
-              <button class="btn btn-warning">Edit</button>
+              <app-update-section-modal 
+                (response)="onSectionUpdated($event)"
+                [sectionId]="section.sectionId!"/>
               <button 
                 (click)="deleteSection(section.sectionId!)"
                 class="btn btn-danger">Delete</button>

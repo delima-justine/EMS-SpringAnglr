@@ -3,10 +3,11 @@ import { TopNav } from "../top-nav/top-nav";
 import { Section } from '../../models/ems.model';
 import { SectionService } from '../../service/section.service';
 import { AddSectionModal } from "./add-section-modal/add-section-modal";
+import { UpdateSectionModal } from "./update-section-modal/update-section-modal";
 
 @Component({
   selector: 'app-sections-page',
-  imports: [TopNav, AddSectionModal],
+  imports: [TopNav, AddSectionModal, UpdateSectionModal],
   templateUrl: './sections-page.html',
   styleUrl: './sections-page.scss',
 })
@@ -36,5 +37,12 @@ export class SectionsPage implements OnInit {
   // Handle Add Section Modal Response
   onSectionAdded(newSection: Section) {
     this.sections.update(sections => [...sections, newSection]);
+  }
+
+  // Handle Update Section Modal Response
+  onSectionUpdated(updatedSection: Section) {
+    this.sections.update(sections => sections.map(section => 
+      section.sectionId === updatedSection.sectionId ? updatedSection : section
+    ));
   }
 }
