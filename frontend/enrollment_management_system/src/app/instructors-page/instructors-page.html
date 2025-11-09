@@ -5,6 +5,16 @@
     <h1>Instructors</h1>
   </div>
 
+  <div class="d-flex justify-content-between m-3">
+    <div>
+      <input class="form-control" placeholder="Search Courses"/>
+    </div>
+    
+    <div>
+      <app-add-instructor-modal (response)="onInstructorAdded($event)"/>
+    </div>
+  </div>
+
   <div class="table-container">
     <table class="table table-striped table-bordered ems-table">
       <thead> 
@@ -19,17 +29,21 @@
       </thead>
 
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Delima</td>
-          <td>Justine</td>
-          <td>justine.delima@example.com</td>
-          <td>6</td>
-          <td class="actions-container">
-            <button class="btn btn-primary">Edit</button>
-            <button class="btn btn-danger">Delete</button>
-          </td>
-        </tr>
+        @for(instructor of instructors(); track $index) {
+           <tr>
+            <td>{{ instructor.instructorId }}</td>
+            <td>{{ instructor.lastName }}</td>
+            <td>{{ instructor.firstName }}</td>
+            <td>{{ instructor.email }}</td>
+            <td>{{ instructor.departmentId }}</td>
+            <td class="actions-container">
+              <button class="btn btn-warning">Edit</button>
+              <button 
+                (click)="deleteInstructor(instructor.instructorId!)"
+                class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>
