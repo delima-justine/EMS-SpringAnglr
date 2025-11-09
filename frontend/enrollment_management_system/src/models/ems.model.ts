@@ -86,3 +86,10 @@ export type Student = {
   programId: number;
   isDeleted?: boolean;
 }
+export type Term = {
+  termId?: number;
+  termCode: string;
+  startDate: string;
+  endDate: string;
+  isDeleted?: boolean;
+}

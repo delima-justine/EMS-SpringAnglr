@@ -1,0 +1,59 @@
+<!-- Add Term Modal -->
+<div 
+  #addTermModal class="modal fade" 
+  tabindex="-1" 
+  data-bs-backdrop="static"
+  data-bs-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add New Term</h5>
+        <button 
+          type="button" 
+          class="btn-close"
+          (click)="closeModal()"></button>
+      </div>
+
+      <div class="modal-body">
+        <form [formGroup]="termForm">
+          <div class="mb-3">
+            <label class="form-label">Term Code</label>
+            <input type="text" class="form-control" formControlName="termCode"/>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Start Date</label>
+            <input type="date" class="form-control" formControlName="startDate"/>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">End Date</label>
+            <input type="date" class="form-control" formControlName="endDate"/>
+          </div>
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <button 
+          type="button" 
+          class="btn btn-secondary"
+          (click)="closeModal()">
+            Close
+        </button>
+        <button 
+          type="button" 
+          class="btn btn-primary"
+          (click)="addTerm()">
+            Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button
+  #openTermButton
+  class="btn btn-primary"
+  (click)="openModal()">
+    Add Term
+</button>
