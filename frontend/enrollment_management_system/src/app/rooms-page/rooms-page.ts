@@ -3,10 +3,11 @@ import { TopNav } from "../top-nav/top-nav";
 import { Room } from '../../models/ems.model';
 import { RoomService } from '../../service/room.service';
 import { AddRoomModal } from "./add-room-modal/add-room-modal";
+import { UpdateRoomModal } from "./update-room-modal/update-room-modal";
 
 @Component({
   selector: 'app-rooms-page',
-  imports: [TopNav, AddRoomModal],
+  imports: [TopNav, AddRoomModal, UpdateRoomModal],
   templateUrl: './rooms-page.html',
   styleUrl: './rooms-page.scss',
 })
@@ -30,5 +31,17 @@ export class RoomsPage implements OnInit {
     this.roomService.deleteRoom(roomId).subscribe(() => {
       this.getRooms();
     });
+  }
+
+  // Handle Add Room Response
+  onRoomAdded(newRoom: Room) {
+    this.rooms.update((rooms) => [...rooms, newRoom]);
+  }
+
+  // Handle Update Room Response
+  onRoomUpdated(updatedRoom:Room) {
+    this.rooms.update((rooms) => rooms.map((room) => 
+      room.roomId === updatedRoom.roomId ? updatedRoom : room
+    ));
   }
 }

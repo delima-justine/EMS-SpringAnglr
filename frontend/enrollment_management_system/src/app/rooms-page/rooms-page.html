@@ -11,7 +11,7 @@
     </div>
     
     <div>
-      <app-add-room-modal/>
+      <app-add-room-modal (response)="onRoomAdded($event)"/>
     </div>
   </div>
 
@@ -35,7 +35,9 @@
             <td>{{ room.roomCode }}</td>
             <td>{{ room.capacity }}</td>
             <td class="actions-container">
-              <button class="btn btn-warning">Edit</button>
+              <app-update-room-modal 
+                (response)="onRoomUpdated($event)"
+                [roomId]="room.roomId!"/>
               <button
                 (click)="deleteRoom(room.roomId!)" 
                 class="btn btn-danger">Delete</button>
