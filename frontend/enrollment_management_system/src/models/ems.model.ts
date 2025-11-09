@@ -51,6 +51,14 @@ export type Program = {
   isDeleted?: boolean;
 }
 
+export type Room = {
+  roomId?: number;
+  building: string;
+  roomCode: string;
+  capacity: number;
+  isDeleted?: boolean;
+}
+
 export type Section = {
   sectionId?: number;
   sectionCode: string;
