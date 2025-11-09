@@ -33,3 +33,12 @@ export type Enrollment = {
   letterGrade: string;
   isDeleted?: boolean;
 }
+
+export type Instructor = {
+  instructorId?: number;
+  lastName: string;
+  firstName: string;
+  email: string;
+  departmentId: number;
+  isDeleted?: boolean;
+}
