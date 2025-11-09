@@ -1,0 +1,138 @@
+<!-- Add Section Modal -->
+<div 
+  #addSectionModal
+  class="modal fade" 
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Section</h5>
+          <button 
+            type="button" 
+            class="btn-close"
+            (click)="closeModal()"></button>
+        </div>
+
+        <div class="modal-body">
+          <form [formGroup]="sectionForm">
+            <div class="mb-3">
+              <label for="section_code">Section Code</label>
+              <input 
+                type="text" 
+                id="section_code" 
+                formControlName="sectionCode" 
+                class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="course_id">Course ID</label>
+              <select formControlName="courseId" class="form-select" id="course_id">
+                <option selected disabled>Select Course</option>
+                <option value="1">Introduction to Computing</option>
+                <option value="2">Computer Programming 1</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="term_id">Term ID</label>
+              <select 
+                id="term_id"
+                formControlName="termId" class="form-select">
+                <option selected disabled>Select Term</option>
+                <option value="1">1st</option>
+                <option value="2">2nd</option>
+                <option value="3">Summer</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="instructor_id">Instructor ID</label>
+              <select 
+                id="instructor_id"
+                formControlName="instructorId" class="form-select">
+                <option selected disabled>Select Instructor</option>
+                <option value="1">Almiranez, Gecilie</option>
+                <option value="2">Modesto, Lady</option>
+                <option value="3">Villarosa, Steven</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="day_pattern">Day Pattern</label>
+              <input 
+                type="text" 
+                id="day_pattern" 
+                formControlName="dayPattern" 
+                class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="start_time">Start Time</label>
+              <input 
+                type="time" 
+                id="start_time" 
+                formControlName="startTime" 
+                class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="end_time">End Time</label>
+              <input 
+                type="time" 
+                id="end_time" 
+                formControlName="endTime" 
+                class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="room_id">Room ID</label>
+              <select 
+                id="room_id"
+                formControlName="roomId" class="form-select">
+                <option selected disabled>Select Room</option>
+                <option value="1">A202</option>
+                <option value="2">A203</option>
+                <option value="3">A204</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="max_capacity">Max Capacity</label>
+              <input
+              id="max_capacity"
+              type="number"
+              max="200"
+              min="0"
+              formControlName="maxCapacity"
+              class="form-control"/>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button 
+            type="button" 
+            class="btn btn-secondary"
+            (click)="closeModal()">
+              Close
+          </button>
+          <button 
+            type="button"
+            class="btn btn-primary"
+            (click)="addSection()">
+              Save
+          </button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<button 
+  #openSectionButton
+  class="btn btn-primary" 
+  type="button"
+  (click)="openModal()">
+    Add Section
+</button>

@@ -50,3 +50,17 @@ export type Program = {
   departmentId: number;
   isDeleted?: boolean;
 }
+
+export type Section = {
+  sectionId?: number;
+  sectionCode: string;
+  courseId: number;
+  termId: number;
+  instructorId: number;
+  dayPattern: string;
+  startTime: string;
+  endTime: string;
+  roomId: number;
+  maxCapacity: number;
+  isDeleted?: boolean;
+}
