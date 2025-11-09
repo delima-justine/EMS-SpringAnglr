@@ -25,7 +25,6 @@ export class AddSectionModal {
 
   constructor(private formBuilder: FormBuilder) {
     this.sectionForm = this.formBuilder.group({
-      sectionId: [''],
       sectionCode: [''],
       courseId: [''],
       termId: [''],
