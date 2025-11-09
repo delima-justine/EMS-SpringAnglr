@@ -26,7 +26,9 @@
             <td>{{ program.departmentId }}</td>
             <td class="actions-container">
               <button class="btn btn-warning">Edit</button>
-              <button class="btn btn-danger">Delete</button>
+              <button 
+                (click)="deleteProgram(program.programId!)"
+                class="btn btn-danger">Delete</button>
             </td>
           </tr>
         }

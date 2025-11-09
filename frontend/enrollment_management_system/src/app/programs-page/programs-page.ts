@@ -17,9 +17,17 @@ export class ProgramsPage implements OnInit {
     this.getPrograms();
   }
 
+  // Fetch Programs
   getPrograms() {
     this.programService.getPrograms().subscribe((programs) => {
       this.programs.set(programs);
+    });
+  }
+
+  // Soft Delete Program
+  deleteProgram(programId: number) {
+    this.programService.deleteProgram(programId).subscribe(() => {
+      this.getPrograms();
     });
   }
 }
