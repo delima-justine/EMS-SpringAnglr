@@ -3,10 +3,11 @@ import { TopNav } from "../top-nav/top-nav";
 import { Program } from '../../models/ems.model';
 import { ProgramService } from '../../service/program.service';
 import { AddProgModal } from "./add-prog-modal/add-prog-modal";
+import { UpdateProgModal } from "./update-prog-modal/update-prog-modal";
 
 @Component({
   selector: 'app-programs-page',
-  imports: [TopNav, AddProgModal],
+  imports: [TopNav, AddProgModal, UpdateProgModal],
   templateUrl: './programs-page.html',
   styleUrl: './programs-page.scss',
 })
@@ -35,5 +36,12 @@ export class ProgramsPage implements OnInit {
   // Handle Add Program Modal Response
   onProgramAdded(newProgram: Program) {
     this.programs.update((programs) => [...programs, newProgram]);
+  }
+
+  //Handle Update Program Modal Response
+  onProgramUpdated(updatedProgram: Program) {
+    this.programs.update((programs) => programs.map((program) => 
+      program.programId === updatedProgram.programId ? updatedProgram : program
+    ));
   }
 }

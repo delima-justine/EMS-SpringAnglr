@@ -1,0 +1,76 @@
+<!-- Update Program Modal -->
+<div 
+  #updateProgramModal
+  class="modal fade" 
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Program</h5>
+          <button 
+            type="button" 
+            class="btn-close"
+            (click)="closeModal()"></button>
+        </div>
+
+        <div class="modal-body">
+          <form [formGroup]="programForm">
+            <div class="mb-3">
+              <label for="program_code">Program Code</label>
+              <input 
+                type="text" 
+                id="program_code" 
+                formControlName="programCode" 
+                class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="program_name">Program Name</label>
+              <input 
+                type="text" 
+                id="program_name" 
+                formControlName="programName" 
+                class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="department_id">Department ID</label>
+              <select 
+                id="department_id"
+                formControlName="departmentId" class="form-select">
+                <option selected disabled>Select Department</option>
+                <option value="6">
+                    College of Computer and Information Sciences
+                </option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button 
+            type="button" 
+            class="btn btn-secondary"
+            (click)="closeModal()">
+              Close
+          </button>
+          <button 
+            type="button"
+            class="btn btn-primary"
+            (click)="updateProgram()">
+              Save
+          </button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<button 
+  #openProgramButton
+  class="btn btn-warning" 
+  type="button"
+  (click)="openUpdateModal()">
+    Edit
+</button>

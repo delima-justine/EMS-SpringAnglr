@@ -35,7 +35,9 @@
             <td>{{ program.programName }}</td>
             <td>{{ program.departmentId }}</td>
             <td class="actions-container">
-              <button class="btn btn-warning">Edit</button>
+              <app-update-prog-modal 
+                (response)="onProgramUpdated($event)"
+                [programId]="program.programId!"/>
               <button 
                 (click)="deleteProgram(program.programId!)"
                 class="btn btn-danger">Delete</button>

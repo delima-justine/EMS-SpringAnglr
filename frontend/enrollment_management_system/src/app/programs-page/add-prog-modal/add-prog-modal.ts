@@ -1,6 +1,5 @@
 import { Component, ElementRef, inject, output, ViewChild } from '@angular/core';
-import { Instructor, Program } from '../../../models/ems.model';
-import { InstructorService } from '../../../service/instructor.service';
+import { Program } from '../../../models/ems.model';
 import { ProgramService } from '../../../service/program.service';
 import { 
         ReactiveFormsModule,
