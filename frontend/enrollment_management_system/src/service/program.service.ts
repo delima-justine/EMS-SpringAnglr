@@ -1,0 +1,32 @@
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Program } from '../models/ems.model';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ProgramService {
+  programUrl = 'http://localhost:8080/api/programs';
+  http = inject(HttpClient);
+
+  getPrograms() {
+    return this.http.get<Program[]>(this.programUrl);
+  }
+
+  getProgramById(programId: number): Observable<Program> {
+    return this.http.get<Program>(`${this.programUrl}/${programId}`);
+  }
+
+  addProgram(program: Program): Observable<Program> {
+    return this.http.post<Program>(this.programUrl, program);
+  }
+
+  updateProgram(programId: number, program: Program): Observable<Program> {
+    return this.http.put<Program>(`${this.programUrl}/${programId}`, program);
+  }
+
+  deleteProgram(programId: number): Observable<Program> {
+    return this.http.delete<Program>(`${this.programUrl}/${programId}`);
+  }
+}
