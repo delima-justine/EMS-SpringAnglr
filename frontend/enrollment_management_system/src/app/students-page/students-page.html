@@ -47,7 +47,9 @@
             <td>{{ student.yearLevel }}</td>
             <td>{{ student.programId }}</td>
             <td class="actions-container">
-              <button class="btn btn-primary">Edit</button>
+              <app-update-student-modal
+              [studentId]="student.studentId!"
+              (response)="onStudentUpdated($event)"/>
               <button 
                 (click)="deleteStudent(student.studentId!)"
                 class="btn btn-danger">Delete</button>

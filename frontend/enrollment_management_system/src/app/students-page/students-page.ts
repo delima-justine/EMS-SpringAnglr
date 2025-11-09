@@ -3,10 +3,11 @@ import { TopNav } from "../top-nav/top-nav";
 import { Student } from '../../models/ems.model';
 import { StudentService } from '../../service/student.service';
 import { AddStudentModal } from "./add-student-modal/add-student-modal";
+import { UpdateStudentModal } from "./update-student-modal/update-student-modal";
 
 @Component({
   selector: 'app-students-page',
-  imports: [TopNav, AddStudentModal],
+  imports: [TopNav, AddStudentModal, UpdateStudentModal],
   templateUrl: './students-page.html',
   styleUrl: './students-page.scss',
 })
@@ -35,5 +36,14 @@ export class StudentsPage implements OnInit {
   // Handle the event emitted from AddStudentModal component
   onStudentAdded(newStudent: Student) {
     this.students.update(student => [...student, newStudent]);
+  }
+
+  // Handle the event emitted from UpdateStudentModal component
+  onStudentUpdated(updatedStudent: Student) {
+    this.students.update(students => 
+      students.map(student => 
+        student.studentId === updatedStudent.studentId ? updatedStudent : student
+      )
+    );
   }
 }

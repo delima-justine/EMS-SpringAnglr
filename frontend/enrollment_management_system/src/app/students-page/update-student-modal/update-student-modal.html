@@ -1,0 +1,133 @@
+<!-- Update Student Modal -->
+<div 
+  #updateStudentModal
+  class="modal fade" 
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Student</h5>
+          <button 
+            type="button" 
+            class="btn-close"
+            (click)="closeModal()"></button>
+        </div>
+
+        <div class="modal-body">
+          <form [formGroup]="studentForm">
+            <div class="mb-3">
+              <label class="form-label" for="student_num">Student Number</label>
+              <input 
+                type="text" 
+                id="student_num" 
+                class="form-control" 
+                formControlName="studentNo">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="firstName">First Name</label>
+              <input 
+                type="text" 
+                id="firstName" 
+                class="form-control" 
+                formControlName="firstName">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="middleName">Middle Name</label>
+              <input 
+                type="text" 
+                id="middleName" 
+                class="form-control" 
+                formControlName="middleName">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="lastName">Last Name</label>
+              <input 
+                type="text" 
+                id="lastName" 
+                class="form-control" 
+                formControlName="lastName">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="email">Email</label>
+              <input 
+                type="email" 
+                id="email" 
+                class="form-control" 
+                formControlName="email">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="birthdate">Birthdate</label>
+              <input 
+                type="date" 
+                id="birthdate" 
+                class="form-control" 
+                formControlName="birthDate">
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="gender">Gender</label>
+              <select id="gender" class="form-control" formControlName="gender">
+                <option selected disabled>Select Gender</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+                <option value="O">Other</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="yearLevel">Year Level</label>
+              <select id="yearLevel" class="form-control" formControlName="yearLevel">
+                <option selected disabled>Select Year Level</option>
+                <option [value]="1">1st Year</option>
+                <option [value]="2">2nd Year</option>
+                <option [value]="3">3rd Year</option>
+                <option [value]="4">4th Year</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="student_num">Program ID</label>
+              <select id="programId" class="form-control" formControlName="programId">
+                <option selected disabled>Select Program</option>
+                <option [value]="4">DIT</option>
+                <option [value]="5">BSOA</option>
+                <option [value]="6">BSIT</option>
+                <option [value]="7">BSECE</option>
+                <option [value]="8">BSME</option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button 
+            type="button" 
+            class="btn btn-secondary"
+            (click)="closeModal()">
+              Close
+          </button>
+          <button 
+            type="button"
+            class="btn btn-primary"
+            (click)="updateStudent()">
+              Save
+          </button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<button 
+  #openStudentModalButton
+  class="btn btn-warning" 
+  type="button"
+  (click)="openUpdateModal()">
+    Edit
+</button>
