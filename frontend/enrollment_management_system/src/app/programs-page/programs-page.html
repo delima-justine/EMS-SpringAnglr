@@ -5,6 +5,16 @@
     <h1>Programs</h1>
   </div>
 
+  <div class="d-flex justify-content-between m-3">
+    <div>
+      <input class="form-control" placeholder="Search Courses"/>
+    </div>
+    
+    <div>
+      <app-add-prog-modal (response)="onProgramAdded($event)"/>
+    </div>
+  </div>
+
   <div class="table-container">
     <table class="table table-striped table-bordered ems-table">
       <thead>
