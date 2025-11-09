@@ -18,16 +18,18 @@
       </thead>
 
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>COMP001</td>
-          <td>Integrative Programming</td>
-          <td>6</td>
-          <td class="actions-container">
-            <button class="btn btn-primary">Edit</button>
-            <button class="btn btn-danger">Delete</button>
-          </td>
-        </tr>
+        @for(program of programs(); track $index) {
+          <tr>
+            <td>{{ program.programId }}</td>
+            <td>{{ program.programCode }}</td>
+            <td>{{ program.programName }}</td>
+            <td>{{ program.departmentId }}</td>
+            <td class="actions-container">
+              <button class="btn btn-warning">Edit</button>
+              <button class="btn btn-danger">Delete</button>
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
   </div>

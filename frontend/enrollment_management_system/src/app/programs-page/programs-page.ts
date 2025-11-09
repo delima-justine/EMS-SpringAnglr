@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { TopNav } from "../top-nav/top-nav";
+import { Program } from '../../models/ems.model';
+import { ProgramService } from '../../service/program.service';
 
 @Component({
   selector: 'app-programs-page',
@@ -7,6 +9,17 @@ import { TopNav } from "../top-nav/top-nav";
   templateUrl: './programs-page.html',
   styleUrl: './programs-page.scss',
 })
-export class ProgramsPage {
+export class ProgramsPage implements OnInit {
+  programs = signal(<Program[]>[])
+  programService = inject(ProgramService);
 
+  ngOnInit(): void {
+    this.getPrograms();
+  }
+
+  getPrograms() {
+    this.programService.getPrograms().subscribe((programs) => {
+      this.programs.set(programs);
+    });
+  }
 }
