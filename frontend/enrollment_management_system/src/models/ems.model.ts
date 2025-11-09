@@ -42,3 +42,11 @@ export type Instructor = {
   departmentId: number;
   isDeleted?: boolean;
 }
+
+export type Program = {
+  programId?: number;
+  programCode: string;
+  programName: string;
+  departmentId: number;
+  isDeleted?: boolean;
+}
