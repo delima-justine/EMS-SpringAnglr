@@ -61,6 +61,7 @@ public class StudentController {
     existingStudent.setEmail(studentData.getEmail());
     existingStudent.setBirthDate(studentData.getBirthDate());
     existingStudent.setGender(studentData.getGender());
+    existingStudent.setYearLevel(studentData.getYearLevel());
     existingStudent.setProgramId(studentData.getProgramId());
 
     Student updatedStudent = studentRepository.save(existingStudent);
