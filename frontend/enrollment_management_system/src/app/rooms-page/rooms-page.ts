@@ -2,10 +2,11 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { TopNav } from "../top-nav/top-nav";
 import { Room } from '../../models/ems.model';
 import { RoomService } from '../../service/room.service';
+import { AddRoomModal } from "./add-room-modal/add-room-modal";
 
 @Component({
   selector: 'app-rooms-page',
-  imports: [TopNav],
+  imports: [TopNav, AddRoomModal],
   templateUrl: './rooms-page.html',
   styleUrl: './rooms-page.scss',
 })
@@ -25,7 +26,7 @@ export class RoomsPage implements OnInit {
   }
 
   // Soft Delete Room
-  deleteRooms(roomId: number) {
+  deleteRoom(roomId: number) {
     this.roomService.deleteRoom(roomId).subscribe(() => {
       this.getRooms();
     });

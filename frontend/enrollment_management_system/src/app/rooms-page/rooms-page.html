@@ -11,7 +11,7 @@
     </div>
     
     <div>
-      
+      <app-add-room-modal/>
     </div>
   </div>
 
@@ -36,7 +36,9 @@
             <td>{{ room.capacity }}</td>
             <td class="actions-container">
               <button class="btn btn-warning">Edit</button>
-              <button class="btn btn-danger">Delete</button>
+              <button
+                (click)="deleteRoom(room.roomId!)" 
+                class="btn btn-danger">Delete</button>
             </td>
           </tr>
         }

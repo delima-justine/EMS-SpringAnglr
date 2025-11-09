@@ -1,0 +1,72 @@
+<!-- Add Room Modal -->
+<div 
+  #addRoomModal
+  class="modal fade" 
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add New Room</h5>
+          <button 
+            type="button" 
+            class="btn-close"
+            (click)="closeModal()"></button>
+        </div>
+
+        <div class="modal-body">
+          <form [formGroup]="roomForm">
+            <div class="mb-3">
+              <label for="building">Building</label>
+              <input 
+                type="text" 
+                id="building" 
+                formControlName="building" 
+                class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="room_code">Room Code</label>
+              <input 
+                type="text" 
+                id="room_code" 
+                formControlName="roomCode" 
+                class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="capacity">Capacity</label>
+              <input 
+                type="number" 
+                id="capacity" 
+                formControlName="capacity" 
+                class="form-control"/>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button 
+            type="button" 
+            class="btn btn-secondary"
+            (click)="closeModal()">
+              Close
+          </button>
+          <button 
+            type="button"
+            class="btn btn-primary"
+            (click)="addRoom()">
+              Save
+          </button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<button 
+  #openRoomButton
+  class="btn btn-primary" 
+  type="button"
+  (click)="openModal()">
+    Add Room
+</button>
