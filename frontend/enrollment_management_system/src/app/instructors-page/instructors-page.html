@@ -37,7 +37,9 @@
             <td>{{ instructor.email }}</td>
             <td>{{ instructor.departmentId }}</td>
             <td class="actions-container">
-              <button class="btn btn-warning">Edit</button>
+              <app-update-instructor-modal 
+                (response)="onInstructorUpdated($event)"
+                [instructorId]="instructor.instructorId!"/>
               <button 
                 (click)="deleteInstructor(instructor.instructorId!)"
                 class="btn btn-danger">Delete</button>

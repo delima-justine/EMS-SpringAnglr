@@ -3,10 +3,11 @@ import { TopNav } from "../top-nav/top-nav";
 import { Instructor } from '../../models/ems.model';
 import { InstructorService } from '../../service/instructor.service';
 import { AddInstructorModal } from "./add-instructor-modal/add-instructor-modal";
+import { UpdateInstructorModal } from "./update-instructor-modal/update-instructor-modal";
 
 @Component({
   selector: 'app-instructors-page',
-  imports: [TopNav, AddInstructorModal],
+  imports: [TopNav, AddInstructorModal, UpdateInstructorModal],
   templateUrl: './instructors-page.html',
   styleUrl: './instructors-page.scss',
 })
@@ -38,5 +39,12 @@ export class InstructorsPage implements OnInit {
   // Handle Added Instructor Event
   onInstructorAdded(newInstructor: Instructor) {
     this.instructors.update(list => [...list, newInstructor]);
+  }
+
+  // Handle Updated Instructor Event
+  onInstructorUpdated(updatedInstructor: Instructor) {
+    this.instructors.update(list => list.map(instructor => 
+      instructor.instructorId === updatedInstructor.instructorId 
+        ? updatedInstructor : instructor));
   }
 }

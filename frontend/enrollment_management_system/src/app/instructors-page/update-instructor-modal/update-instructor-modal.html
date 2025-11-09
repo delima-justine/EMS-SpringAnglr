@@ -1,0 +1,85 @@
+<!-- Update Instructor Modal -->
+<div 
+  #updateInstructorModal
+  class="modal fade" 
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Update Instructor</h5>
+          <button 
+            type="button" 
+            class="btn-close"
+            (click)="closeModal()"></button>
+        </div>
+
+        <div class="modal-body">
+          <form [formGroup]="instructorForm">
+            <div class="mb-3">
+              <label for="last_name">Last Name</label>
+              <input 
+                type="text" 
+                id="last_name" 
+                formControlName="lastName" 
+                class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="first_name">First Name</label>
+              <input 
+                type="text" 
+                id="first_name" 
+                formControlName="firstName" 
+                class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="email">Email</label>
+              <input 
+                type="text" 
+                id="email" 
+                formControlName="email" 
+                class="form-control"/>
+            </div>
+
+            <div class="mb-3">
+              <label for="dept_id">Department ID</label>
+              <select 
+                id="dept_id"
+                formControlName="departmentId" class="form-select">
+                <option selected disabled>Select Department</option>
+                <option value="6">
+                    College of Computer and Information Sciences
+                </option>
+              </select>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button 
+            type="button" 
+            class="btn btn-secondary"
+            (click)="closeModal()">
+              Close
+          </button>
+          <button 
+            type="button"
+            class="btn btn-primary"
+            (click)="updateInstructor()">
+              Save
+          </button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<button 
+  #openInstructorButton
+  class="btn btn-warning" 
+  type="button"
+  (click)="openUpdateModal()">
+    Edit
+</button>
