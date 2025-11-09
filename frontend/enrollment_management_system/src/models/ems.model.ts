@@ -64,3 +64,17 @@ export type Section = {
   maxCapacity: number;
   isDeleted?: boolean;
 }
+
+export type Student = {
+  studentId?: number;
+  studentNo: string;
+  lastName: string;
+  firstName: string;
+  middleName: string;
+  email: string;
+  birthDate: string;
+  gender: string;
+  yearLevel: number; 
+  programId: number;
+  isDeleted?: boolean;
+}
