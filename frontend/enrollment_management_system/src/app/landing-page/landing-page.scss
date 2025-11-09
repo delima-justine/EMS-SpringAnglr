@@ -4,15 +4,63 @@ $hovered-nav-link-color: #FFC107;
 main {
   height: 100vh;
   width: 100vw;
-  display: flex;
+  display: grid;
   justify-content: center;
+  grid-template-areas: 
+  "title-logo nav-links"
+  "title-logo nav-links";
+  background: url('/assets/voxalated_school_bg.png') ;
+}
+
+.title-logo-container {
+  display: grid;
+  grid-template-areas: 
+  "title"
+  "logo";
+  justify-items: center;
+  align-items: center;
+  grid-area: title-logo;
+  border: 0.5px solid black;
+  border-radius: 10px;
+  margin: 30px 100px;
+  background-color: white;
 }
 
 .title-wrapper {
   text-align: center;
-  margin-top: 50px;
-  margin-bottom: 30px;
   padding: 20px;
+  grid-area: title;
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.logo-container {
+  height: auto;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 15px;
+  grid-area: logo;
+
+  img {
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+
+    &:hover {
+      cursor: pointer;
+      transform: rotate(-10deg);
+      transition: transform 0.5s ease-in-out;
+    }
+  }
+}
+
+.logo-inner-container {
+  width: 200px;
+  height: 200px;
 }
 
 .nav-links-container {
@@ -25,6 +73,7 @@ main {
   "enrollment-nav student-nav"
   "instructor-nav term-nav";
   gap: 1em;
+  grid-area: nav-links;
 }
 
 .nav-links-container > div:hover .nav-link {
