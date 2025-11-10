@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, inject, OnChanges, OnInit, signal } from '@angular/core';
 import { TopNav } from "../top-nav/top-nav";
 import { Backend } from '../../service/backend';
 import { Course } from '../../models/ems.model';
@@ -19,7 +19,7 @@ import { UpdateModal } from "./update-modal/update-modal";
   templateUrl: './courses-page.html',
   styleUrl: './courses-page.scss',
 })
-export class CoursesPage implements OnInit, AfterViewInit {
+export class CoursesPage implements OnInit, AfterViewInit, OnChanges {
   courses = signal(<Course[]>[]);
   courseIdSent = signal<number>(0);
   backendService = inject(Backend);
@@ -34,6 +34,10 @@ export class CoursesPage implements OnInit, AfterViewInit {
 
   // After the view initializes, fetch the courses
   ngAfterViewInit(): void {
+    this.getCourses();
+  }
+
+  ngOnChanges(): void {
     this.getCourses();
   }
 
@@ -64,5 +68,13 @@ export class CoursesPage implements OnInit, AfterViewInit {
             list => list.filter(course => course.courseId !== courseId)
         );
       })
+  }
+
+  searchCourses(query: string) {
+    console.log("Searching for:", query);
+    this.backendService.searchCourses(query)
+      .subscribe(coursesData => {
+        this.courses.set(coursesData);
+    });
   }
 }

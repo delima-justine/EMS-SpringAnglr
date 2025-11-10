@@ -7,7 +7,10 @@
 
   <div class="d-flex justify-content-between m-3">
     <div>
-      <input class="form-control" placeholder="Search Courses"/>
+      <input 
+        class="form-control" 
+        placeholder="Search Courses"
+        (input)="searchCourses($event.target.value)"/>
     </div>
     
     <div>
