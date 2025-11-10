@@ -14,6 +14,9 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, Integer>
   @Query("SELECT e FROM Enrollment e WHERE e.isDeleted = false")
   List<Enrollment> findAllActiveEnrollments();
 
+  @Query(value = "SELECT * FROM tbl_enrollment WHERE student_id LIKE CONCAT('%', :student_id, '%') AND is_deleted = false", nativeQuery = true)
+  List<Enrollment> findByStudentIdContainingAndNotDeleted(String student_id);
+
   // Soft delete enrollment by ID
   @Modifying
   @Transactional
