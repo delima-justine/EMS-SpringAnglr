@@ -7,7 +7,10 @@
 
   <div class="d-flex justify-content-between m-3">
     <div>
-      <input class="form-control" placeholder="Search Courses"/>
+      <input 
+        class="form-control" 
+        placeholder="Search Departments"
+        (input)="searchDepartments($event.target.value)"/>
     </div>
     
     <div>
@@ -27,6 +30,12 @@
       </thead>
 
       <tbody>
+        @if(departments().length === 0) {
+          <tr>
+            <td colspan="4" class="text-center">No departments found.</td>
+          </tr>
+        }
+
         @for(department of departments(); track $index) {
           <tr>
             <td>{{ department.departmentId }}</td>

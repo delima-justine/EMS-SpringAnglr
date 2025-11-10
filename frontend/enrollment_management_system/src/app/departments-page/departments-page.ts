@@ -45,4 +45,12 @@ export class DepartmentsPage implements OnInit {
           list => list.filter(dept => dept.departmentId !== departmentId))
       });
   }
+
+  // Search Departments by name
+  searchDepartments(query: string) {
+    this.departmentService.searchDepartments(query)
+      .subscribe(searchedDepartments => {
+        this.departments.set(searchedDepartments);
+    });
+  }
 }
