@@ -53,4 +53,11 @@ export class EnrollmentsPage implements OnInit {
         );
       });
   }
+
+  searchEnrollmentsByStudentId(studentId: number) {
+    this.enrollmentService.searchEnrollmentByStudentId(studentId)
+      .subscribe(enrollmentsData => {
+        this.enrollments.set(enrollmentsData);
+    });
+  }
 }

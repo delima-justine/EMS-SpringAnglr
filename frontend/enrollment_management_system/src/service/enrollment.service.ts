@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Enrollment } from '../models/ems.model';
 import { Observable } from 'rxjs';
@@ -28,5 +28,10 @@ export class EnrollmentService {
 
   deleteEnrollment(id: number): Observable<Enrollment> {
     return this.http.delete<Enrollment>(`${this.enrollmentUrl}/${id}`);
+  }
+
+  searchEnrollmentByStudentId(studentId: number): Observable<Enrollment[]> {
+    const params = new HttpParams().set('student_id', studentId);
+    return this.http.get<Enrollment[]>(`${this.enrollmentUrl}/search`, { params });
   }
 }
