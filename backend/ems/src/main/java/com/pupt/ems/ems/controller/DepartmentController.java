@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pupt.ems.ems.exception.ResourceNotFoundException;
@@ -68,5 +69,10 @@ public class DepartmentController {
     Map<String, Boolean> response = new HashMap<>();
     response.put("deleted", Boolean.TRUE);
     return ResponseEntity.ok(response);
+  }
+
+  @GetMapping("/departments/search")
+  public List<Department> searchDepartmentsByName(@RequestParam String department_name) {
+    return departmentRepository.findByDepartmentNameContainingAndNotDeleted(department_name);
   }
 }

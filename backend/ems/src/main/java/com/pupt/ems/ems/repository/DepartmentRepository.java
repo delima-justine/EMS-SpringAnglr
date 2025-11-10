@@ -13,6 +13,9 @@ public interface DepartmentRepository extends JpaRepository<Department, Integer>
   @Query("SELECT d FROM Department d WHERE d.isDeleted = false")
   List<Department> getAllExistingDepartments();
 
+  @Query(value = "SELECT * FROM tbl_department WHERE dept_name LIKE CONCAT('%', :department_name, '%') AND is_deleted = 0", nativeQuery = true)
+  List<Department> findByDepartmentNameContainingAndNotDeleted(String department_name);
+
   @Modifying
   @Transactional
   @Query("UPDATE Department d SET d.isDeleted = true WHERE d.departmentId = ?1")
