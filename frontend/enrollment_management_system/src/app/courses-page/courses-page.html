@@ -34,6 +34,12 @@
       </thead>
       
       <tbody>
+        @if(courses().length === 0) {
+          <tr>
+            <td colspan="8" class="text-center">No courses found.</td>
+          </tr>
+        }
+        
         @for(course of courses(); track $index) {
           <tr>
             <td>{{ course.courseId }}</td>
