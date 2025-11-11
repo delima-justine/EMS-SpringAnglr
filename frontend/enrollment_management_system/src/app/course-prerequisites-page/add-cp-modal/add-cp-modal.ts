@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { 
         ReactiveFormsModule,
         FormGroup,
@@ -8,7 +8,8 @@ import {
       } from '@angular/forms';
 import { Modal } from 'bootstrap';
 import { CoursePrereqService } from '../../../service/course-prereq.service';
-import { CoursePrerequisite } from '../../../models/ems.model';
+import { Course, CoursePrerequisite } from '../../../models/ems.model';
+import { Backend } from '../../../service/backend';
 
 @Component({
   selector: 'app-add-cp-modal',
@@ -16,11 +17,14 @@ import { CoursePrerequisite } from '../../../models/ems.model';
   templateUrl: './add-cp-modal.html',
   styleUrl: './add-cp-modal.scss',
 })
-export class AddCpModal {
+export class AddCpModal implements OnInit {
   @ViewChild('addCoursePrereqModal') addCoursePrereqModal!: ElementRef;
+  courses = signal(<Course[]>[])
+  coursePrerequisites = signal(<CoursePrerequisite[]>[]);
   coursePrereqForm: FormGroup;
   formBuilder = inject(FormBuilder);
   coursePrereqService = inject(CoursePrereqService);
+  courseService = inject(Backend);
 
   constructor() {
     this.coursePrereqForm = this.formBuilder.group({
@@ -30,6 +34,10 @@ export class AddCpModal {
       }),
       isDeleted: [0],
     });
+  }
+
+  ngOnInit(): void {
+    this.getCourses();
   }
 
   openModal() {
@@ -49,6 +57,12 @@ export class AddCpModal {
         console.log(created);
         this.coursePrereqForm.reset();
       });
-    // console.log(this.coursePrereqForm.value);
+  }
+
+  getCourses() {
+    this.courseService.sortCoursesAsc()
+      .subscribe((courseData: Course[]) => {
+        this.courses.set(courseData);
+    });
   }
 }

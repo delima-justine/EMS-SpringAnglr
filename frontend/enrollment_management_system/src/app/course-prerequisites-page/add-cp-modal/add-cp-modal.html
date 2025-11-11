@@ -5,7 +5,7 @@
   data-bs-backdrop="static"
   data-bs-keyboard="false"
   tabindex="-1">
-    <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Add New Course</h5>
@@ -19,23 +19,29 @@
           <form [formGroup]="coursePrereqForm">
             <div formGroupName="id">
                 <div class="mb-3">
-                <label for="course_code">Course ID</label>
-                <input 
-                  type="number" 
-                  id="course_code" 
-                  formControlName="courseId" 
-                  class="form-control"
-                  min="0"/>
+                <label for="course_code" class="form-label">Course ID</label>
+                <select formControlName="courseId" class="form-select">
+                  <option selected disabled>Select Course</option>
+                  @for(course of courses(); track $index) {
+                    <option [value]="course.courseId">
+                      [{{ course.courseId }}]. {{ course.courseCode }} - 
+                        {{ course.courseTitle }}
+                    </option>
+                  }
+                </select>
               </div>
 
               <div class="mb-3">
                 <label for="course_title">Course Prerequisite ID</label>
-                <input 
-                  type="number" 
-                  id="course_title" 
-                  formControlName="prereqCourseId" 
-                  class="form-control"
-                  min="0"/>
+                <select formControlName="prereqCourseId" class="form-select">
+                  <option selected disabled>Select Course Prerequisite</option>
+                  @for(course of courses(); track $index) {
+                    <option [value]="course.courseId">
+                      [{{ course.courseId }}]. {{ course.courseCode }} - 
+                        {{ course.courseTitle }}
+                    </option>
+                  }
+                </select>
               </div>
             </div>
           </form>
