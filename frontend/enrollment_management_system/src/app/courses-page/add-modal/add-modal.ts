@@ -1,6 +1,6 @@
 import Modal from 'bootstrap/js/dist/modal';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, inject, input, output, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, input, OnInit, output, signal, ViewChild } from '@angular/core';
 import { 
         ReactiveFormsModule,
         FormGroup,
@@ -9,7 +9,8 @@ import {
         Validators
       } from '@angular/forms';
 import { Backend } from '../../../service/backend';
-import { Course } from '../../../models/ems.model';
+import { Course, Department } from '../../../models/ems.model';
+import { DepartmentService } from '../../../service/department.service';
 
 @Component({
   selector: 'app-add-modal',
@@ -17,12 +18,14 @@ import { Course } from '../../../models/ems.model';
   templateUrl: './add-modal.html',
   styleUrls: ['./add-modal.scss'],
 })
-export class AddModal {
+export class AddModal implements OnInit {
   @ViewChild('addCourseModal') addCourseModal!: ElementRef;
   courseId = input(<number>(0));
   response = output<Course>();
+  departments = signal(<Department[]>[]);
   courseForm: FormGroup;
   backendService = inject(Backend);
+  deptService = inject(DepartmentService);
   formBuilder = inject(FormBuilder);
 
   constructor() {
@@ -34,6 +37,10 @@ export class AddModal {
       labHours: [''],
       departmentId: [''],
     });
+  }
+
+  ngOnInit(): void {
+    this.getDepartments();
   }
 
   openModal() {
@@ -55,5 +62,11 @@ export class AddModal {
 
         this.response.emit(created);
       });
+  }
+
+  getDepartments() {
+    this.deptService.getDepartments().subscribe((data) => {
+      this.departments.set(data);
+    })
   }
 }

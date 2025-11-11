@@ -1,6 +1,6 @@
-import { Component, ElementRef, inject, input, output, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, input, OnInit, output, signal, ViewChild } from '@angular/core';
 import { Backend } from '../../../service/backend';
-import { Course } from '../../../models/ems.model';
+import { Course, Department } from '../../../models/ems.model';
 import { 
         ReactiveFormsModule,
         FormGroup,
@@ -10,6 +10,7 @@ import {
       } from '@angular/forms';
 import { Modal } from 'bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
+import { DepartmentService } from '../../../service/department.service';
 
 @Component({
   selector: 'app-update-modal',
@@ -17,15 +18,15 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './update-modal.html',
   styleUrl: './update-modal.scss',
 })
-export class UpdateModal {
+export class UpdateModal implements OnInit {
   @ViewChild('updateCourseModal') updateCourseModal!: ElementRef;
+  departments = signal(<Department[]>[]);
   courseId = input(<number>(0));
   courseForm: FormGroup;
   updateCourseResponse = output<Course>();
   backendService = inject(Backend);
+  deptService = inject(DepartmentService);
   formBuilder = inject(FormBuilder);
-  router = inject(Router);
-  activatedRoute = inject(ActivatedRoute);
 
   constructor() {
     this.courseForm = this.formBuilder.group({
@@ -36,6 +37,10 @@ export class UpdateModal {
       labHours: [''],
       departmentId: [''],
     });
+  }
+
+  ngOnInit(): void {
+    this.getDepartments();
   }
 
   openUpdateModal() {
@@ -77,5 +82,11 @@ export class UpdateModal {
 
         this.updateCourseResponse.emit(updatedCourse);
       });
+  }
+
+  getDepartments() {
+    this.deptService.getDepartments().subscribe((data) => {
+      this.departments.set(data);
+    });
   }
 }
