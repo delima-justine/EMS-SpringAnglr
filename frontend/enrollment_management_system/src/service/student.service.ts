@@ -34,4 +34,8 @@ export class StudentService {
     const params = new HttpParams().set('keyword', keyword);
     return this.http.get<Student[]>(`${this.studentUrl}/search`, { params });
   }
+
+  sortStudentsAsc(): Observable<Student[]> {
+    return this.http.get<Student[]>(`${this.studentUrl}/asc`);
+  }
 }

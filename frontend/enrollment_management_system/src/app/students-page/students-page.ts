@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { TopNav } from "../top-nav/top-nav";
 import { Student } from '../../models/ems.model';
 import { StudentService } from '../../service/student.service';
@@ -12,6 +12,7 @@ import { UpdateStudentModal } from "./update-student-modal/update-student-modal"
   styleUrl: './students-page.scss',
 })
 export class StudentsPage implements OnInit {
+  @ViewChild('sortOrder') sortOrder!: ElementRef;
   students = signal(<Student[]>[]);
   studentService = inject(StudentService);
 
@@ -51,5 +52,22 @@ export class StudentsPage implements OnInit {
     this.studentService.searchStudents(keyword).subscribe(searchedStudents => {
       this.students.set(searchedStudents);
     });
+  }
+  
+  sortStudents() {
+    const order = this.sortOrder.nativeElement.value;
+
+    switch(order) {
+      case 'asc':
+        this.studentService.sortStudentsAsc().subscribe(sortedStudents => {
+          this.students.set(sortedStudents);
+        });
+        break;
+      case 'desc':
+        this.studentService.sortStudentsAsc().subscribe(sortedStudents => {
+          this.students.set(sortedStudents.reverse());
+        });
+        break;
+    }
   }
 }
