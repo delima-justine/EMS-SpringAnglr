@@ -47,4 +47,11 @@ export class InstructorsPage implements OnInit {
       instructor.instructorId === updatedInstructor.instructorId 
         ? updatedInstructor : instructor));
   }
+
+  searchInstructor(name: string) {
+    this.instructorService.searchInstructor(name)
+      .subscribe(searchResults => {
+        this.instructors.set(searchResults);
+      })
+  }
 }

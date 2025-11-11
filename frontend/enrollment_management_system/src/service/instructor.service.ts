@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Instructor } from '../models/ems.model';
 import { Observable } from 'rxjs';
@@ -28,5 +28,10 @@ export class InstructorService {
 
   deleteInstructor(instructorId: number): Observable<Instructor> {
     return this.http.delete<Instructor>(`${this.instructorUrl}/${instructorId}`);
+  }
+
+  searchInstructor(name: String): Observable<Instructor[]> {
+    const params = new HttpParams().set('name', name.toString());
+    return this.http.get<Instructor[]>(`${this.instructorUrl}/search`, { params });
   }
 }
