@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, output, signal, ViewChild } from '@angular/core';
 import { 
         ReactiveFormsModule,
         FormGroup,
@@ -25,6 +25,7 @@ export class AddCpModal implements OnInit {
   formBuilder = inject(FormBuilder);
   coursePrereqService = inject(CoursePrereqService);
   courseService = inject(Backend);
+  response = output<CoursePrerequisite>();
 
   constructor() {
     this.coursePrereqForm = this.formBuilder.group({
@@ -54,8 +55,9 @@ export class AddCpModal implements OnInit {
   addCoursePrerequisite() {
     this.coursePrereqService.addCoursePrerequisite(this.coursePrereqForm.value)
       .subscribe((created: CoursePrerequisite) => {
-        console.log(created);
+        this.response.emit(created);
         this.coursePrereqForm.reset();
+        this.closeModal();
       });
   }
 

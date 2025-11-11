@@ -52,4 +52,9 @@ export class CoursePrerequisitesPage implements OnInit {
         break;
     }
   }
+
+  onCourseAdded(addedCourse: CoursePrerequisite) {
+    this.coursePrerequisites.update(prereqs => [...prereqs, addedCourse]);
+    this.getCoursePrerequisites();
+  }
 }
