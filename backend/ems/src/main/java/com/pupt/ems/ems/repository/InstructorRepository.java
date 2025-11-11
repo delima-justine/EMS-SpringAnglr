@@ -18,4 +18,11 @@ public interface InstructorRepository extends JpaRepository<Instructor, Integer>
   @Transactional
   @Query("UPDATE Instructor i SET i.isDeleted = true WHERE i.instructorId = ?1")
   void softDeleteInstructorById(Integer instructorId);
+
+  @Query(
+      value = "SELECT * FROM tbl_instructor WHERE (CONCAT(first_name, ' ', last_name) LIKE CONCAT('%', ?1, '%') OR " +
+              "CONCAT(last_name, ' ', first_name) LIKE CONCAT('%', ?1, '%')) AND is_deleted = false",
+      nativeQuery = true
+  )
+  List<Instructor> findByFullNameContainingNative(String name);
 }

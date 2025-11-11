@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.pupt.ems.ems.exception.ResourceNotFoundException;
 import com.pupt.ems.ems.model.Instructor;
@@ -73,5 +74,10 @@ public class InstructorController {
     Map<String, Boolean> response = new HashMap<>();
     response.put("deleted", Boolean.TRUE);
     return ResponseEntity.ok(response);
+  }
+
+  @GetMapping("/instructors/search")
+  public List<Instructor> searchInstructorsByName(@RequestParam String name) {
+    return instructorRepository.findByFullNameContainingNative(name);
   }
 }
