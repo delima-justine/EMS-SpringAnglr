@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { TopNav } from "../top-nav/top-nav";
 import { Enrollment } from '../../models/ems.model';
 import { EnrollmentService } from '../../service/enrollment.service';
@@ -12,6 +12,7 @@ import { UpdateEnrollmentModal } from "./update-enrollment-modal/update-enrollme
   styleUrl: './enrollments-page.scss',
 })
 export class EnrollmentsPage implements OnInit {
+  @ViewChild('sortOrder') sortOrder!: ElementRef;
   enrollments = signal(<Enrollment[]>[]);
   enrollmentService = inject(EnrollmentService);
 
@@ -59,5 +60,24 @@ export class EnrollmentsPage implements OnInit {
       .subscribe(enrollmentsData => {
         this.enrollments.set(enrollmentsData);
     });
+  }
+
+  sortEnrollments() {
+    const order = this.sortOrder.nativeElement.value;
+
+    switch(order) {
+      case 'asc':
+        this.enrollmentService.sortEnrollmentsByIDAsc()
+          .subscribe(sortedEnrollments => {
+            this.enrollments.set(sortedEnrollments);
+        });
+        break;
+      case 'desc':
+        this.enrollmentService.sortEnrollmentsByIDAsc()
+          .subscribe(sortedEnrollments => {
+            this.enrollments.set(sortedEnrollments.reverse());
+        });
+        break;
+    }
   }
 }

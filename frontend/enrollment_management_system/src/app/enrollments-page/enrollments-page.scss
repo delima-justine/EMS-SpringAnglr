@@ -18,3 +18,15 @@ table.ems-table {
 .actions-container {
   @include m.actions-container;
 }
+
+.top-actions-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.search-sort-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}

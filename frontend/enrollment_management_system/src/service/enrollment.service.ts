@@ -34,4 +34,8 @@ export class EnrollmentService {
     const params = new HttpParams().set('student_id', studentId);
     return this.http.get<Enrollment[]>(`${this.enrollmentUrl}/search`, { params });
   }
+
+  sortEnrollmentsByIDAsc(): Observable<Enrollment[]> {
+    return this.http.get<Enrollment[]>(`${this.enrollmentUrl}/asc`);
+  }
 }
