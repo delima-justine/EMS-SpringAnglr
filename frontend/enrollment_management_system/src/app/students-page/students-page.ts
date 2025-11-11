@@ -46,4 +46,10 @@ export class StudentsPage implements OnInit {
       )
     );
   }
+
+  searchStudents(keyword: string) {
+    this.studentService.searchStudents(keyword).subscribe(searchedStudents => {
+      this.students.set(searchedStudents);
+    });
+  }
 }

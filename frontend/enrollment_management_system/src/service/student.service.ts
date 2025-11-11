@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Student } from '../models/ems.model';
 import { Observable } from 'rxjs';
@@ -28,5 +28,10 @@ export class StudentService {
 
   deleteStudent(studentId: number): Observable<Student> {
     return this.http.delete<Student>(`${this.studentUrl}/${studentId}`);
+  }
+
+  searchStudents(keyword: string): Observable<Student[]> {
+    const params = new HttpParams().set('keyword', keyword);
+    return this.http.get<Student[]>(`${this.studentUrl}/search`, { params });
   }
 }
