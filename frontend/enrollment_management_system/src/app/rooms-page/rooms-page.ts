@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { TopNav } from "../top-nav/top-nav";
 import { Room } from '../../models/ems.model';
 import { RoomService } from '../../service/room.service';
@@ -12,6 +12,7 @@ import { UpdateRoomModal } from "./update-room-modal/update-room-modal";
   styleUrl: './rooms-page.scss',
 })
 export class RoomsPage implements OnInit {
+  @ViewChild('sortOrder') sortOrder!: ElementRef;
   rooms = signal(<Room[]>[]);
   roomService = inject(RoomService);
 
@@ -49,5 +50,22 @@ export class RoomsPage implements OnInit {
     this.roomService.searchRooms(keyword).subscribe((searchedRooms) => {
       this.rooms.set(searchedRooms);
     });
+  }
+
+  sortRooms() {
+    const order = this.sortOrder.nativeElement.value;
+
+    switch(order) {
+      case 'asc':
+        this.roomService.sortRoomsAsc().subscribe((sortedRooms) => {
+          this.rooms.set(sortedRooms);
+        });
+        break;
+      case 'desc':
+        this.roomService.sortRoomsAsc().subscribe((sortedRooms) => {
+          this.rooms.set(sortedRooms.reverse());
+        });
+        break;
+    }
   }
 }

@@ -5,13 +5,23 @@
     <h1>Room Management</h1>
   </div>
 
-  <div class="d-flex justify-content-between m-3">
-    <div>
-      <input 
-        type="text"
-        class="form-control" 
-        placeholder="Search Rooms"
-        (input)="searchRooms($event.target.value)"/>
+  <div class="top-actions-container">
+    <div class="search-sort-container">
+      <div>
+        <input 
+          type="text"
+          class="form-control" 
+          placeholder="Search Rooms"
+          (input)="searchRooms($event.target.value)"/>
+      </div>
+
+      <div>
+        <select #sortOrder class="form-select" (change)="sortRooms()">
+          <option selected disabled>Sort By</option>
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </div>
     </div>
     
     <div>
