@@ -16,6 +16,9 @@ public interface TermRepository extends JpaRepository<Term, Integer> {
   @Query("SELECT t FROM Term t WHERE t.isDeleted = false")
   List<Term> findAllActiveTerms();
 
+  @Query(value = "SELECT * FROM tbl_term WHERE term_code LIKE CONCAT('%', ?1, '%') AND is_deleted = false", nativeQuery = true)
+  List<Term> searchTermsByCode(String keyword);
+
   // Soft delete method
   @Modifying
   @Transactional

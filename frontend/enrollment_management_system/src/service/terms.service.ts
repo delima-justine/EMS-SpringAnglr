@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Term } from '../models/ems.model';
 import { Observable } from 'rxjs';
@@ -28,5 +28,10 @@ export class TermsService {
 
   deleteTerm(id: number): Observable<Term> {
     return this.http.delete<Term>(`${this.termUrl}/${id}`);
+  }
+  
+  searchTerms(keyword: string): Observable<Term[]> {
+    const params = new HttpParams().set('keyword', keyword);
+    return this.http.get<Term[]>(`${this.termUrl}/search`, { params });
   }
 }

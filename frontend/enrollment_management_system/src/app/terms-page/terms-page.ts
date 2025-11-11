@@ -39,4 +39,10 @@ export class TermsPage implements OnInit {
     this.terms.update((currentTerms) => currentTerms.map((term) => 
       term.termId === updatedTerm.termId ? updatedTerm : term));
   }
+
+  searchTerms(keyword: string) {
+    this.termService.searchTerms(keyword).subscribe((searchedTerms) => {
+      this.terms.set(searchedTerms);
+    });
+  }
 }
