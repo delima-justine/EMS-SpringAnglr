@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Room } from '../models/ems.model';
 import { Observable } from 'rxjs';
@@ -28,5 +28,10 @@ export class RoomService {
 
   deleteRoom(roomId: number): Observable<Room> {
     return this.http.delete<Room>(`${this.roomUrl}/${roomId}`);
+  }
+
+  searchRooms(keyword: string): Observable<Room[]> {
+    const params = new HttpParams().set('keyword', keyword);
+    return this.http.get<Room[]>(`${this.roomUrl}/search`, { params });
   }
 }

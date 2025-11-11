@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.pupt.ems.ems.exception.ResourceNotFoundException;
 import com.pupt.ems.ems.model.Room;
@@ -69,5 +70,11 @@ public class RoomController {
     Map<String, Boolean> response = new HashMap<>();
     response.put("deleted", Boolean.TRUE);
     return ResponseEntity.ok(response);
+  }
+
+  // Search Rooms by Building or Room Code
+  @GetMapping("/rooms/search")
+  public List<Room> searchRooms(@RequestParam String keyword) {
+    return roomRepository.searchRoomsByBuildingOrCode(keyword);
   }
 }

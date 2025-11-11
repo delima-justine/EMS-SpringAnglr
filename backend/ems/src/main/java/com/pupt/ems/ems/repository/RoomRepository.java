@@ -19,4 +19,8 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
   @Transactional
   @Query("UPDATE Room r SET r.isDeleted = true WHERE r.roomId = ?1")
   void softDeleteRoomById(Integer id);
+
+  @Query(
+    value = "SELECT * FROM tbl_room WHERE (building LIKE CONCAT('%', ?1, '%') OR room_code LIKE CONCAT('%', ?1, '%')) AND is_deleted = false", nativeQuery = true)
+  List<Room> searchRoomsByBuildingOrCode(String keyword);
 }

@@ -44,4 +44,10 @@ export class RoomsPage implements OnInit {
       room.roomId === updatedRoom.roomId ? updatedRoom : room
     ));
   }
+
+  searchRooms(keyword: string) {
+    this.roomService.searchRooms(keyword).subscribe((searchedRooms) => {
+      this.rooms.set(searchedRooms);
+    });
+  }
 }
