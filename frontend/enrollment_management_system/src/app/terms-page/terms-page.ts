@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { TopNav } from "../top-nav/top-nav";
 import { Term } from '../../models/ems.model';
 import { TermsService } from '../../service/terms.service';
@@ -12,6 +12,7 @@ import { UpdateTermModal } from "./update-term-modal/update-term-modal";
   styleUrl: './terms-page.scss',
 })
 export class TermsPage implements OnInit {
+  @ViewChild('sortOrder') sortOrder!: ElementRef;
   terms = signal(<Term[]>[]);
   termService = inject(TermsService);
 
@@ -44,5 +45,22 @@ export class TermsPage implements OnInit {
     this.termService.searchTerms(keyword).subscribe((searchedTerms) => {
       this.terms.set(searchedTerms);
     });
+  }
+
+  sortTerms() {
+    const order = this.sortOrder.nativeElement.value;
+
+    switch(order) {
+      case 'asc':
+        this.termService.sortTermsAsc().subscribe((sortedTerms) => {
+          this.terms.set(sortedTerms);
+        });
+        break;
+      case 'desc':
+        this.termService.sortTermsAsc().subscribe((sortedTerms) => {
+          this.terms.set(sortedTerms.reverse());
+        });
+        break;
+    }
   }
 }
