@@ -35,6 +35,10 @@
     "@ngx-loading-bar/http-client": "^7.0.0",
     "@ngx-loading-bar/router": "^7.0.0",
     "bootstrap": "^5.3.8",
+    "exceljs": "^4.4.0",
+    "file-saver": "^2.0.5",
+    "jspdf": "^3.0.3",
+    "jspdf-autotable": "^5.0.2",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
