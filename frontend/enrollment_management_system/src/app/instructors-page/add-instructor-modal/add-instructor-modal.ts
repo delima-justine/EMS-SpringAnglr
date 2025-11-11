@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, input, output, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, input, OnInit, output, signal, ViewChild } from '@angular/core';
 import { Modal } from 'bootstrap';
 import { 
         ReactiveFormsModule,
@@ -8,7 +8,8 @@ import {
         Validators
       } from '@angular/forms';
 import { InstructorService } from '../../../service/instructor.service';
-import { Instructor } from '../../../models/ems.model';
+import { Department, Instructor } from '../../../models/ems.model';
+import { DepartmentService } from '../../../service/department.service';
 
 @Component({
   selector: 'app-add-instructor-modal',
@@ -16,12 +17,14 @@ import { Instructor } from '../../../models/ems.model';
   templateUrl: './add-instructor-modal.html',
   styleUrl: './add-instructor-modal.scss',
 })
-export class AddInstructorModal {
+export class AddInstructorModal implements OnInit {
   @ViewChild('addInstructorModal') addInstructorModal!: ElementRef;
   @ViewChild('openInstructorButton') addInstructorButton!: ElementRef<HTMLButtonElement>;
   instructorForm: FormGroup;
   instructorService = inject(InstructorService);
+  deptService = inject(DepartmentService);
   response = output<Instructor>();
+  departments = signal(<Department[]>[]);
 
   constructor(private formBuilder: FormBuilder) {
     this.instructorForm = this.formBuilder.group({
@@ -32,6 +35,10 @@ export class AddInstructorModal {
       departmentId: [''],
       isDeleted: [false],
     });
+  }
+
+  ngOnInit(): void {
+    this.getDepartments();
   }
 
   openModal() {
@@ -54,5 +61,12 @@ export class AddInstructorModal {
         this.response.emit(createdInstructor);
         this.closeModal();
       })
+  }
+
+  getDepartments() {
+    this.deptService.getDepartments()
+      .subscribe(deptData => {
+        this.departments.set(deptData);
+    });
   }
 }

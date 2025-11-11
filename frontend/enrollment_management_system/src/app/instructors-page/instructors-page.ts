@@ -40,6 +40,7 @@ export class InstructorsPage implements OnInit {
   // Handle Added Instructor Event
   onInstructorAdded(newInstructor: Instructor) {
     this.instructors.update(list => [...list, newInstructor]);
+    this.getInstructors();
   }
 
   // Handle Updated Instructor Event
@@ -47,6 +48,8 @@ export class InstructorsPage implements OnInit {
     this.instructors.update(list => list.map(instructor => 
       instructor.instructorId === updatedInstructor.instructorId 
         ? updatedInstructor : instructor));
+
+    this.getInstructors();
   }
 
   searchInstructor(name: string) {

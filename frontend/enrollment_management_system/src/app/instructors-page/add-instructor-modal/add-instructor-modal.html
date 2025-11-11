@@ -36,16 +36,6 @@
             </div>
 
             <div class="mb-3">
-              <label for="middle_name">Middle Initial</label>
-              <input 
-                type="text" 
-                id="middle_name" 
-                formControlName="middleName" 
-                class="form-control"
-                maxlength="1"/>
-            </div>
-
-            <div class="mb-3">
               <label for="email">Email</label>
               <input 
                 type="text" 
@@ -60,9 +50,12 @@
                 id="dept_id"
                 formControlName="departmentId" class="form-select">
                 <option selected disabled>Select Department</option>
-                <option value="6">
-                    College of Computer and Information Sciences
-                </option>
+                  @for(department of departments(); track $index) {
+                    <option [value]="department.departmentId">
+                      [{{ department.departmentId }}]. {{ department.departmentCode }} 
+                        - {{ department.departmentName }}
+                    </option>
+                  }
               </select>
             </div>
           </form>
