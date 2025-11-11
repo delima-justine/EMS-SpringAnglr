@@ -34,4 +34,8 @@ export class SectionService {
     const params = new HttpParams().set('keyword', keyword);
     return this.http.get<Section[]>(`${this.serviceUrl}/search`, { params });
   }
+
+  sortSectionsAsc(): Observable<Section[]> {
+    return this.http.get<Section[]>(`${this.serviceUrl}/asc`);
+  }
 }

@@ -34,4 +34,8 @@ export class TermsService {
     const params = new HttpParams().set('keyword', keyword);
     return this.http.get<Term[]>(`${this.termUrl}/search`, { params });
   }
+
+  sortTermsAsc(): Observable<Term[]> {
+    return this.http.get<Term[]>(`${this.termUrl}/asc`);
+  }
 }

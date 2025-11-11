@@ -34,4 +34,8 @@ export class ProgramService {
     const params = new HttpParams().set('keyword', keyword);
     return this.http.get<Program[]>(`${this.programUrl}/search`, { params });
   }
+
+  sortProgramsAsc(): Observable<Program[]> {
+    return this.http.get<Program[]>(`${this.programUrl}/asc`);
+  }
 }

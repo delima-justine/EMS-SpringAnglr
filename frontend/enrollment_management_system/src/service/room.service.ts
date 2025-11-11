@@ -34,4 +34,8 @@ export class RoomService {
     const params = new HttpParams().set('keyword', keyword);
     return this.http.get<Room[]>(`${this.roomUrl}/search`, { params });
   }
+
+  sortRoomsAsc(): Observable<Room[]> {
+    return this.http.get<Room[]>(`${this.roomUrl}/asc`);
+  }
 }

@@ -23,4 +23,8 @@ export class CoursePrereqService {
       `${this.coursePrereqUrl}/${courseId}/${prereqCourseId}`
     );
   }
+
+  sortCoursePrerequisitesAsc(): Observable<CoursePrerequisite[]> {
+    return this.http.get<CoursePrerequisite[]>(`${this.coursePrereqUrl}/asc`);
+  }
 }
