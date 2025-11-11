@@ -37,6 +37,7 @@ export class ProgramsPage implements OnInit {
   // Handle Add Program Modal Response
   onProgramAdded(newProgram: Program) {
     this.programs.update((programs) => [...programs, newProgram]);
+    this.getPrograms();
   }
 
   //Handle Update Program Modal Response
@@ -44,6 +45,8 @@ export class ProgramsPage implements OnInit {
     this.programs.update((programs) => programs.map((program) => 
       program.programId === updatedProgram.programId ? updatedProgram : program
     ));
+
+    this.getPrograms();
   }
 
   searchPrograms(keyword: string) {

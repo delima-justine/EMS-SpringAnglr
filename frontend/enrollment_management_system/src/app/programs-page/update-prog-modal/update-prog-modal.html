@@ -41,9 +41,12 @@
                 id="department_id"
                 formControlName="departmentId" class="form-select">
                 <option selected disabled>Select Department</option>
-                <option value="6">
-                    College of Computer and Information Sciences
-                </option>
+                  @for(department of departments(); track $index) {
+                    <option [value]="department.departmentId">
+                      [{{ department.departmentId }}]. {{ department.departmentCode }} 
+                        - {{ department.departmentName }}
+                    </option>
+                  }
               </select>
             </div>
           </form>

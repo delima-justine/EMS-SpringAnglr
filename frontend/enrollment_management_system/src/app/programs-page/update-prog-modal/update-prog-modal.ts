@@ -1,6 +1,6 @@
-import { Component, ElementRef, inject, input, output, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, input, OnInit, output, signal, ViewChild } from '@angular/core';
 import { ProgramService } from '../../../service/program.service';
-import { Program } from '../../../models/ems.model';
+import { Department, Program } from '../../../models/ems.model';
 import { 
         ReactiveFormsModule,
         FormGroup,
@@ -9,6 +9,7 @@ import {
         Validators
       } from '@angular/forms';
 import { Modal } from 'bootstrap';
+import { DepartmentService } from '../../../service/department.service';
 
 @Component({
   selector: 'app-update-prog-modal',
@@ -16,13 +17,15 @@ import { Modal } from 'bootstrap';
   templateUrl: './update-prog-modal.html',
   styleUrl: './update-prog-modal.scss',
 })
-export class UpdateProgModal {
+export class UpdateProgModal implements OnInit{
   @ViewChild('updateProgramModal') updateProgramModal!: ElementRef;
   @ViewChild('openProgramButton') updateProgramButton!: ElementRef<HTMLButtonElement>;
   programForm: FormGroup;
   programService = inject(ProgramService);
+  deptService = inject(DepartmentService);
   programId = input(<number>(0));
   response = output<Program>();
+  departments = signal(<Department[]>[]);
 
   constructor(private formBuilder: FormBuilder) {
     this.programForm = this.formBuilder.group({
@@ -31,6 +34,10 @@ export class UpdateProgModal {
       departmentId: [''],
       isDeleted: [false]
     });
+  }
+
+  ngOnInit(): void {
+    this.getDepartments();
   }
 
   openModal() {
@@ -66,6 +73,12 @@ export class UpdateProgModal {
         this.response.emit(updatedProgram);
         this.programForm.reset();
         this.closeModal();
+    });
+  }
+
+  getDepartments() {
+    this.deptService.getDepartments().subscribe((departments) => {
+      this.departments.set(departments);
     });
   }
 }
