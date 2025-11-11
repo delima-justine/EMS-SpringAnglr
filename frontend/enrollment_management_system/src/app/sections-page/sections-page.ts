@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { TopNav } from "../top-nav/top-nav";
 import { Section } from '../../models/ems.model';
 import { SectionService } from '../../service/section.service';
@@ -12,6 +12,7 @@ import { UpdateSectionModal } from "./update-section-modal/update-section-modal"
   styleUrl: './sections-page.scss',
 })
 export class SectionsPage implements OnInit {
+  @ViewChild('sortOrder') sortOrder!: ElementRef;
   sections = signal(<Section[]>[]);
   sectionService = inject(SectionService);
 
@@ -50,5 +51,22 @@ export class SectionsPage implements OnInit {
     this.sectionService.searchSections(keyword).subscribe(searchedSections => {
       this.sections.set(searchedSections);
     });
+  }
+
+  sortSections() {
+    const order = this.sortOrder.nativeElement.value;
+    
+    switch(order) {
+      case 'asc':
+        this.sectionService.sortSectionsAsc().subscribe(sortedSections => {
+          this.sections.set(sortedSections);
+        });
+        break;
+      case 'desc':
+        this.sectionService.sortSectionsAsc().subscribe(sortedSections => {
+          this.sections.set(sortedSections.reverse());
+        });
+        break;
+    }
   }
 }
