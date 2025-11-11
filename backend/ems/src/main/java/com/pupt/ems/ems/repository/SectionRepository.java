@@ -14,6 +14,9 @@ public interface SectionRepository extends JpaRepository<Section, Integer> {
   @Query("SELECT s FROM Section s WHERE s.isDeleted = false")
   List<Section> findAllActiveSections();
 
+  @Query(value = "SELECT * FROM tbl_section WHERE section_code LIKE CONCAT('%', ?1, '%') AND is_deleted = false", nativeQuery = true)
+  List<Section> searchSectionsByCode(String keyword);
+
   @Modifying
   @Transactional
   @Query("UPDATE Section s SET s.isDeleted = true WHERE s.sectionId = ?1")

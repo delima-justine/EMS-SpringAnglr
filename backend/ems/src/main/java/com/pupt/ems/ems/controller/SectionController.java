@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.pupt.ems.ems.exception.ResourceNotFoundException;
 import com.pupt.ems.ems.model.Section;
@@ -75,5 +76,11 @@ public class SectionController {
     sectionRepository.softDeleteById(id);
     Map<String, Boolean> response = Map.of("deleted", Boolean.TRUE);
     return ResponseEntity.ok(response);
+  }
+
+  // Search Sections by Section Code
+  @GetMapping("/sections/search")
+  public List<Section> searchSectionsByCode(@RequestParam String keyword) {
+    return sectionRepository.searchSectionsByCode(keyword);
   }
 }

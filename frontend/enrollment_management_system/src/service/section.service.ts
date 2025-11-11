@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Section } from '../models/ems.model';
 import { Observable } from 'rxjs';
@@ -28,5 +28,10 @@ export class SectionService {
 
   deleteSection(sectionId: number): Observable<Section> {
     return this.http.delete<Section>(`${this.serviceUrl}/${sectionId}`);
+  }
+
+  searchSections(keyword: string): Observable<Section[]> {
+    const params = new HttpParams().set('keyword', keyword);
+    return this.http.get<Section[]>(`${this.serviceUrl}/search`, { params });
   }
 }

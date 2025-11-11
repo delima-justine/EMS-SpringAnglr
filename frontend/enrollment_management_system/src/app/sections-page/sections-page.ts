@@ -45,4 +45,10 @@ export class SectionsPage implements OnInit {
       section.sectionId === updatedSection.sectionId ? updatedSection : section
     ));
   }
+
+  searchSections(keyword: string) {
+    this.sectionService.searchSections(keyword).subscribe(searchedSections => {
+      this.sections.set(searchedSections);
+    });
+  }
 }

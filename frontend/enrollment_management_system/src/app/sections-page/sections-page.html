@@ -7,7 +7,11 @@
 
   <div class="d-flex justify-content-between m-3">
     <div>
-      <input class="form-control" placeholder="Search Courses"/>
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Search Courses"
+        (input)="searchSections($event.target.value)"/>
     </div>
     
     <div>
@@ -34,6 +38,12 @@
       </thead>
 
       <tbody>
+        @if(sections().length === 0) {
+          <tr>
+            <td colspan="11" class="text-center">No sections found.</td>
+          </tr>
+        }
+
         @for(section of sections(); track $index) {
           <tr>
             <td>{{ section.sectionId }}</td>
