@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { TopNav } from "../top-nav/top-nav";
 import { Program } from '../../models/ems.model';
 import { ProgramService } from '../../service/program.service';
@@ -12,6 +12,7 @@ import { UpdateProgModal } from "./update-prog-modal/update-prog-modal";
   styleUrl: './programs-page.scss',
 })
 export class ProgramsPage implements OnInit {
+  @ViewChild('sortOrder') sortOrder!: ElementRef
   programs = signal(<Program[]>[])
   programService = inject(ProgramService);
 
@@ -50,5 +51,24 @@ export class ProgramsPage implements OnInit {
       .subscribe((searchedPrograms) => {
         this.programs.set(searchedPrograms);
     });
+  }
+
+  sortPrograms() {
+    const order = this.sortOrder.nativeElement.value;
+
+    switch(order) {
+      case 'asc':
+        this.programService.sortProgramsAsc()
+          .subscribe((sortedPrograms) => {
+            this.programs.set(sortedPrograms);
+          });
+        break;
+      case 'desc':
+        this.programService.sortProgramsAsc()
+          .subscribe((sortedPrograms) => {
+            this.programs.set(sortedPrograms.reverse());
+          });
+        break;
+    }
   }
 }
