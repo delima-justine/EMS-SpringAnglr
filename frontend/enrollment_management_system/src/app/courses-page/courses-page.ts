@@ -1,10 +1,12 @@
-import { AfterContentInit, AfterViewInit, Component, ElementRef, inject, OnChanges, OnInit, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnChanges, OnInit, signal, ViewChild } from '@angular/core';
 import { TopNav } from "../top-nav/top-nav";
 import { Backend } from '../../service/backend';
 import { Course } from '../../models/ems.model';
 import { ActivatedRoute, Router } from "@angular/router";
 import { AddModal } from "./add-modal/add-modal";
 import { UpdateModal } from "./update-modal/update-modal";
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-courses-page',
@@ -82,5 +84,49 @@ export class CoursesPage implements OnInit {
           });
         break;
     }
+  }
+
+  exportToPDF() {
+    console.log("Exporting to PDF...");
+    const doc = new jsPDF({ 
+      unit: 'pt', format: 'letter', orientation: 'landscape'
+    });
+
+    const columns = ['#', 'Course Code', 'Course Title', 'Units', 'Lecture Hrs', 
+        'Lab Hrs', 'Dept ID'];
+    const rows = this.courses().map((c, i) => [
+      (i + 1).toString(),
+      c.courseCode ?? '',
+      c.courseTitle ?? '',
+      (c.units ?? '').toString(),
+      (c.lectureHours ?? '').toString(),
+      (c.labHours ?? '').toString(),
+      (c.departmentId ?? '').toString()
+    ]);
+
+    const title = 'Polytechnic University of the Philippines Taguig Campus - Course List';
+    doc.setFontSize(20);
+
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const textWidth = doc.getTextWidth(title);
+    const x = (pageWidth - textWidth) / 2;
+    doc.text(title, x, 40);
+
+    autoTable(doc, {
+      head: [columns],
+      body: rows,
+      startY: 60,
+      margin: { left: 40, right: 40 },
+      styles: { fontSize: 10 },
+      headStyles: { fillColor: [102, 34, 34], textColor: 255 },
+      alternateRowStyles: { fillColor: [245, 245, 245] },
+      tableLineWidth: 0.5
+    });
+
+    doc.save('courses.pdf');
+  }
+
+  exportToExcel() {
+    console.log("Exporting to Excel...");
   }
 }

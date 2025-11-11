@@ -28,7 +28,7 @@
     </div>
   </div>
 
-  <div>
+  <div class="table-container">
     <table class="table table-striped table-bordered courses-table">
       <thead>
         <tr>
@@ -74,5 +74,25 @@
         }
       </tbody>
     </table>
+  </div>
+
+  <div class="d-flex justify-content-end gap-3 mt-3 mb-5">
+    <div>
+      <button
+        type="button"
+        class="btn btn-success"
+        (click)="exportToPDF()">
+          Export to PDF
+      </button>
+    </div>
+
+    <div>
+      <button
+        type="button"
+        class="btn btn-success"
+        (click)="exportToExcel()">
+          Export to Excel
+      </button>
+    </div>
   </div>
 </main>

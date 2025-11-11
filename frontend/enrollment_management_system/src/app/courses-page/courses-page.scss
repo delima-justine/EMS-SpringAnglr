@@ -36,8 +36,8 @@ table.courses-table thead {
 }
 
 .courses-table {
-  border-radius: 20px;
-  overflow: hidden;
+  border-radius: 0;
+  overflow: visible;
 }
 
 .actions-container {
@@ -57,4 +57,27 @@ table.courses-table thead {
   display: flex;
   flex-direction: row;
   gap: 1em;
+}
+
+.table-container {
+  position: relative;              
+  max-height: 50vh;               
+  overflow-y: auto;               
+  overflow-x: auto;
+  border-radius: 12px;         
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+  display: table;
+}
+
+.table-container thead th {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background-color: $maroon-red;  
+  color: white;
 }
