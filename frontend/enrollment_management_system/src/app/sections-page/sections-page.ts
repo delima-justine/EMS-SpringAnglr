@@ -38,6 +38,7 @@ export class SectionsPage implements OnInit {
   // Handle Add Section Modal Response
   onSectionAdded(newSection: Section) {
     this.sections.update(sections => [...sections, newSection]);
+    this.getSections();
   }
 
   // Handle Update Section Modal Response
@@ -45,6 +46,7 @@ export class SectionsPage implements OnInit {
     this.sections.update(sections => sections.map(section => 
       section.sectionId === updatedSection.sectionId ? updatedSection : section
     ));
+    this.getSections();
   }
 
   searchSections(keyword: string) {

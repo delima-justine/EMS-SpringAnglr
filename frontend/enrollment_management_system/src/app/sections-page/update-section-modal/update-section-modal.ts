@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, input, output, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, input, OnInit, output, signal, ViewChild } from '@angular/core';
 import { Modal } from 'bootstrap';
 import { 
         FormGroup, 
@@ -8,7 +8,11 @@ import {
         Validators
       } from '@angular/forms';
 import { SectionService } from '../../../service/section.service';
-import { Section } from '../../../models/ems.model';
+import { Course, Instructor, Room, Section, Term } from '../../../models/ems.model';
+import { Backend } from '../../../service/backend';
+import { InstructorService } from '../../../service/instructor.service';
+import { RoomService } from '../../../service/room.service';
+import { TermsService } from '../../../service/terms.service';
 
 @Component({
   selector: 'app-update-section-modal',
@@ -16,13 +20,21 @@ import { Section } from '../../../models/ems.model';
   templateUrl: './update-section-modal.html',
   styleUrl: './update-section-modal.scss',
 })
-export class UpdateSectionModal {
+export class UpdateSectionModal implements OnInit {
   @ViewChild('updateSectionModal') updateSectionModal!: ElementRef;
   @ViewChild('openSectionButton') openSectionButton!: ElementRef<HTMLButtonElement>;
   sectionForm: FormGroup;
   sectionService = inject(SectionService);
   sectionId = input(<number>(0));
   response = output<Section>();
+  courseService = inject(Backend);
+  termService = inject(TermsService);
+  roomService = inject(RoomService);
+  instructorService = inject(InstructorService);
+  courses = signal(<Course[]>[])
+  instructors = signal(<Instructor[]>[]);
+  terms = signal(<Term[]>[]);
+  rooms = signal(<Room[]>[]);
 
   constructor(private formBuilder: FormBuilder) {
     this.sectionForm = this.formBuilder.group({
@@ -37,6 +49,13 @@ export class UpdateSectionModal {
       maxCapacity: [''],
       isDeleted: [false]
     });
+  }
+
+  ngOnInit(): void {
+    this.getCourses();
+    this.getInstructors();
+    this.getTerms();
+    this.getRooms();
   }
 
   openModal() {
@@ -79,6 +98,30 @@ export class UpdateSectionModal {
         this.response.emit(updatedSection);
         this.sectionForm.reset();
         this.closeModal();
+    });
+  }
+
+  getCourses() {
+    this.courseService.sortCoursesAsc().subscribe(courses => {
+      this.courses.set(courses);
+    });
+  }
+
+  getInstructors() {
+    this.instructorService.sortInstructorsByNameAsc().subscribe(instructors => {
+      this.instructors.set(instructors);
+    });
+  }
+
+  getTerms() {
+    this.termService.sortTermsAsc().subscribe(fetchedTerms => {
+      this.terms.set(fetchedTerms);
+    });
+  }
+
+  getRooms() {
+    this.roomService.sortRoomsAsc().subscribe(rooms => {
+      this.rooms.set(rooms);
     });
   }
 }

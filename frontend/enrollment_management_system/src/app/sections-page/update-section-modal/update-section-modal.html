@@ -30,8 +30,11 @@
               <label for="course_id">Course ID</label>
               <select formControlName="courseId" class="form-select" id="course_id">
                 <option selected disabled>Select Course</option>
-                <option value="1">Introduction to Computing</option>
-                <option value="2">Computer Programming 1</option>
+                @for(course of courses(); track $index) {
+                  <option [value]="course.courseId">
+                    [{{ course.courseId }}]. {{ course.courseTitle }}
+                  </option>
+                }
               </select>
             </div>
 
@@ -41,9 +44,11 @@
                 id="term_id"
                 formControlName="termId" class="form-select">
                 <option selected disabled>Select Term</option>
-                <option value="1">1st</option>
-                <option value="2">2nd</option>
-                <option value="3">Summer</option>
+                @for(term of terms(); track $index) {
+                  <option [value]="term.termId">
+                    [{{ term.termId }}]. {{ term.termCode }}
+                  </option>
+                }
               </select>
             </div>
 
@@ -53,9 +58,12 @@
                 id="instructor_id"
                 formControlName="instructorId" class="form-select">
                 <option selected disabled>Select Instructor</option>
-                <option value="1">Almiranez, Gecilie</option>
-                <option value="2">Modesto, Lady</option>
-                <option value="3">Villarosa, Steven</option>
+                @for(instructor of instructors(); track $index) {
+                  <option [value]="instructor.instructorId">
+                    [{{ instructor.instructorId }}]. 
+                      {{ instructor.firstName }} {{ instructor.lastName }}
+                  </option>
+                }
               </select>
             </div>
 
@@ -92,9 +100,11 @@
                 id="room_id"
                 formControlName="roomId" class="form-select">
                 <option selected disabled>Select Room</option>
-                <option value="1">A202</option>
-                <option value="2">A203</option>
-                <option value="3">A204</option>
+                @for(room of rooms(); track $index) {
+                    <option [value]="room.roomId">
+                      [{{ room.roomId }}]. {{ room.roomCode }}
+                    </option>
+                }
               </select>
             </div>
 
