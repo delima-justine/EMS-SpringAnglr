@@ -34,4 +34,8 @@ export class InstructorService {
     const params = new HttpParams().set('name', name.toString());
     return this.http.get<Instructor[]>(`${this.instructorUrl}/search`, { params });
   }
+
+  sortInstructorsByNameAsc(): Observable<Instructor[]> {
+    return this.http.get<Instructor[]>(`${this.instructorUrl}/asc`);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { TopNav } from "../top-nav/top-nav";
 import { Instructor } from '../../models/ems.model';
 import { InstructorService } from '../../service/instructor.service';
@@ -12,6 +12,7 @@ import { UpdateInstructorModal } from "./update-instructor-modal/update-instruct
   styleUrl: './instructors-page.scss',
 })
 export class InstructorsPage implements OnInit {
+  @ViewChild('sortOrder') sortOrder!: ElementRef;
   instructors = signal(<Instructor[]>[]);
   instructorService = inject(InstructorService);
 
@@ -53,5 +54,24 @@ export class InstructorsPage implements OnInit {
       .subscribe(searchResults => {
         this.instructors.set(searchResults);
       })
+  }
+
+  sortInstructors() {
+    const sortValue = this.sortOrder.nativeElement.value;
+
+    switch(sortValue) {
+      case 'asc':
+        this.instructorService.sortInstructorsByNameAsc()
+          .subscribe(sortedInstructors => {
+            this.instructors.set(sortedInstructors);
+          });
+        break;
+      case 'desc':
+        this.instructorService.sortInstructorsByNameAsc()
+          .subscribe(sortedInstructors => {
+            this.instructors.set(sortedInstructors.reverse());
+          });
+        break;
+    }
   }
 }
