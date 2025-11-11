@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { TopNav } from "../top-nav/top-nav";
 import { Department } from '../../models/ems.model';
 import { DepartmentService } from '../../service/department.service';
@@ -12,6 +12,7 @@ import { UpdateDeptModal } from "./update-dept-modal/update-dept-modal";
   styleUrl: './departments-page.scss',
 })
 export class DepartmentsPage implements OnInit {
+  @ViewChild('sortOrder') sortOrder!: ElementRef;
   departments = signal(<Department[]>[]);
   departmentService = inject(DepartmentService);
 
@@ -52,5 +53,24 @@ export class DepartmentsPage implements OnInit {
       .subscribe(searchedDepartments => {
         this.departments.set(searchedDepartments);
     });
+  }
+
+  sortDepartments() {
+    const order = this.sortOrder.nativeElement.value;
+
+    switch(order) {
+      case 'asc':
+        this.departmentService.sortDepartmentsAsc()
+          .subscribe(sortedDepartments => {
+            this.departments.set(sortedDepartments);
+        });
+        break;
+      case 'desc':
+        this.departmentService.sortDepartmentsAsc()
+          .subscribe(sortedDepartments => {
+            this.departments.set(sortedDepartments.reverse());
+        });
+        break;
+    }
   }
 }

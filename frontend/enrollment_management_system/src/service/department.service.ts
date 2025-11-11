@@ -34,4 +34,8 @@ export class DepartmentService {
     const params = new HttpParams().set('department_name', query);
     return this.http.get<Department[]>(`${this.deptUrl}/search`, { params });
   }
+
+  sortDepartmentsAsc(): Observable<Department[]> {
+    return this.http.get<Department[]>(`${this.deptUrl}/asc`);
+  }
 }
