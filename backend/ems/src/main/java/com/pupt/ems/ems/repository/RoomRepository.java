@@ -14,6 +14,9 @@ public interface RoomRepository extends JpaRepository<Room, Integer> {
   @Query("SELECT r FROM Room r WHERE r.isDeleted = false ORDER BY r.roomId DESC")
   List<Room> findAllActiveRooms();
 
+  @Query("SELECT r FROM Room r WHERE r.isDeleted = false ORDER BY r.roomId ASC")
+  List<Room> findAllActiveRoomsAsc();
+
   //Soft delete method
   @Modifying
   @Transactional
