@@ -5,7 +5,7 @@
   data-bs-backdrop="static"
   data-bs-keyboard="false"
   tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Update Enrollment</h5>
@@ -18,17 +18,32 @@
         <div class="modal-body">
           <form [formGroup]="enrollmentForm">
             <div class="mb-3">
-              <label for="student_id">Student ID</label>
-              <input 
-                type="number" 
-                id="student_id" 
-                formControlName="studentId" 
-                class="form-control"
-                min="0"/>
+              <label for="student_id" class="form-label">Student ID</label>
+              <select formControlName="studentId" class="form-select">
+                <option selected disabled>Select Student</option>
+                @for(student of students(); track $index) {
+                  <option [value]="student.studentId">
+                    [{{ student.studentId }}] - {{ student.firstName }} 
+                      {{ student.lastName }}
+                  </option>
+                }
+              </select>
             </div>
 
             <div class="mb-3">
-              <label for="section_id">Section ID</label>
+              <label for="section_id" class="form-label">Section ID</label>
+              <select formControlName="sectionId" class="form-select">
+                <option selected disabled>Select Section</option>
+                @for(section of sections(); track $index) {
+                  <option [value]="section.sectionId">
+                    [{{ section.sectionId }}] - {{ section.sectionCode }}
+                  </option>
+                }
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="date_enrolled">Date Enrolled</label>
               <input 
                 type="number" 
                 id="section_id" 

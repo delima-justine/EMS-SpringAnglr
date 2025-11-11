@@ -32,6 +32,7 @@ export class EnrollmentsPage implements OnInit {
   onEnrollmentAdded(newEnrollment: Enrollment) {
     this.enrollments.update(
       currentEnrollments => [...currentEnrollments, newEnrollment]);
+    this.getEnrollments();
   }
 
   // Handler for when an enrollment is updated
@@ -42,6 +43,8 @@ export class EnrollmentsPage implements OnInit {
         updatedEnrollment : enrollment
       )
     );
+
+    this.getEnrollments();
   }
 
   // Handler for when an enrollment is deleted
