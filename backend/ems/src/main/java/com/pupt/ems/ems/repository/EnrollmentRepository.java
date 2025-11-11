@@ -11,7 +11,7 @@ import jakarta.transaction.Transactional;
 public interface EnrollmentRepository extends JpaRepository<Enrollment, Integer> {
   // Custom query methods (if needed) can be defined here
 
-  @Query("SELECT e FROM Enrollment e WHERE e.isDeleted = false")
+  @Query("SELECT e FROM Enrollment e WHERE e.isDeleted = false ORDER BY e.enrollmentId DESC")
   List<Enrollment> findAllActiveEnrollments();
 
   @Query(value = "SELECT * FROM tbl_enrollment WHERE student_id LIKE CONCAT('%', :student_id, '%') AND is_deleted = false", nativeQuery = true)

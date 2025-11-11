@@ -11,7 +11,7 @@ import jakarta.transaction.Transactional;
 public interface StudentRepository extends JpaRepository<Student, Integer> {
   // Custom query methods can be defined here
 
-  @Query("SELECT s FROM Student s WHERE s.isDeleted = false")
+  @Query("SELECT s FROM Student s WHERE s.isDeleted = false ORDER BY s.studentId DESC")
   List<Student> findAllActiveStudents();
 
   @Query(value = "SELECT * FROM tbl_student WHERE CONCAT(first_name, ' ', middle_name, ' ', last_name) LIKE CONCAT('%', ?1, '%') AND is_deleted = false", nativeQuery = true)

@@ -10,7 +10,7 @@ import jakarta.transaction.Transactional;
 public interface InstructorRepository extends JpaRepository<Instructor, Integer> {
   // Define custom query methods here
 
-  @Query("SELECT i FROM Instructor i WHERE i.isDeleted = false")
+  @Query("SELECT i FROM Instructor i WHERE i.isDeleted = false ORDER BY i.instructorId DESC")
   List<Instructor> getAllExistingInstructors();
 
   // Soft Delete Instructor by ID

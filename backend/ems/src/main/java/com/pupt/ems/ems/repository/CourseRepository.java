@@ -13,7 +13,7 @@ import com.pupt.ems.ems.model.Course;
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Integer> {
 
-  @Query("SELECT c FROM Course c WHERE c.isDeleted = 0")
+  @Query("SELECT c FROM Course c WHERE c.isDeleted = 0 ORDER BY c.courseId DESC")
   List<Course> getAllExistingCourses();
 
   @Query(value = "SELECT * FROM tbl_course WHERE course_title LIKE  CONCAT('%', :course_title, '%') AND is_deleted = 0", nativeQuery = true)

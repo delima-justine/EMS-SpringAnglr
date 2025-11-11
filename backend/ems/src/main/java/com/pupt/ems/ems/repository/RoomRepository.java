@@ -11,7 +11,7 @@ import jakarta.transaction.Transactional;
 public interface RoomRepository extends JpaRepository<Room, Integer> {
   // Custom query methods can be defined here
 
-  @Query("SELECT r FROM Room r WHERE r.isDeleted = false")
+  @Query("SELECT r FROM Room r WHERE r.isDeleted = false ORDER BY r.roomId DESC")
   List<Room> findAllActiveRooms();
 
   //Soft delete method

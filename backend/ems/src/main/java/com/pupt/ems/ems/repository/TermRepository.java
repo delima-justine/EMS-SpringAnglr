@@ -13,7 +13,7 @@ import jakarta.transaction.Transactional;
 public interface TermRepository extends JpaRepository<Term, Integer> {
   // Custom query methods can be defined here
 
-  @Query("SELECT t FROM Term t WHERE t.isDeleted = false")
+  @Query("SELECT t FROM Term t WHERE t.isDeleted = false ORDER BY t.termId DESC")
   List<Term> findAllActiveTerms();
 
   @Query(value = "SELECT * FROM tbl_term WHERE term_code LIKE CONCAT('%', ?1, '%') AND is_deleted = false", nativeQuery = true)

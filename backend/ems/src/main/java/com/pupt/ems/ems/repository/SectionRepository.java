@@ -11,7 +11,7 @@ import jakarta.transaction.Transactional;
 public interface SectionRepository extends JpaRepository<Section, Integer> {
   // Custom query methods (if needed) can be defined here
 
-  @Query("SELECT s FROM Section s WHERE s.isDeleted = false")
+  @Query("SELECT s FROM Section s WHERE s.isDeleted = false ORDER BY s.sectionId DESC")
   List<Section> findAllActiveSections();
 
   @Query(value = "SELECT * FROM tbl_section WHERE section_code LIKE CONCAT('%', ?1, '%') AND is_deleted = false", nativeQuery = true)

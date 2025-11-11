@@ -11,7 +11,7 @@ import jakarta.transaction.Transactional;
 public interface ProgramRepository extends JpaRepository<Program, Integer> {
   // Additional query methods can be defined here if needed
 
-  @Query("SELECT p FROM Program p WHERE p.isDeleted = false")
+  @Query("SELECT p FROM Program p WHERE p.isDeleted = false ORDER BY p.programId DESC")
   List<Program> getAllExistingPrograms();
 
   @Query(
