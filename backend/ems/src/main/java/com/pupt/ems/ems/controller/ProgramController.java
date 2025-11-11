@@ -74,4 +74,9 @@ public class ProgramController {
   public List<Program> searchPrograms(@RequestParam String keyword) {
     return programRepository.searchProgramsByCodeOrName(keyword);
   }
+
+  @GetMapping("/programs/asc")
+  public List<Program> getProgramsAsc() {
+    return programRepository.getAllExistingProgramsAsc();
+  }
 }

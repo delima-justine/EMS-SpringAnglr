@@ -78,4 +78,9 @@ public class TermController {
   public List<Term> searchTermsByCode(@RequestParam String keyword) {
     return termRepository.searchTermsByCode(keyword);
   }
+
+  @GetMapping("/terms/asc")
+  public List<Term> getAllTermsAsc() {
+    return termRepository.findAllActiveTermsAsc();
+  }
 }

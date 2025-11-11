@@ -82,4 +82,9 @@ public class StudentController {
   public List<Student> searchStudentsByName(@RequestParam String keyword) {
     return studentRepository.searchStudentsByName(keyword);
   }
+
+  @GetMapping(value = "/students/asc")
+  public List<Student> getStudentsAsc() {
+    return studentRepository.findAllActiveStudentsAsc();
+  }
 }

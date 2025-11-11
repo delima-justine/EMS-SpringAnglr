@@ -13,6 +13,9 @@ public interface InstructorRepository extends JpaRepository<Instructor, Integer>
   @Query("SELECT i FROM Instructor i WHERE i.isDeleted = false ORDER BY i.instructorId DESC")
   List<Instructor> getAllExistingInstructors();
 
+  @Query("SELECT i FROM Instructor i WHERE i.isDeleted = false ORDER BY i.instructorId ASC")
+  List<Instructor> getAllExistingInstructorsAsc();
+
   // Soft Delete Instructor by ID
   @Modifying
   @Transactional

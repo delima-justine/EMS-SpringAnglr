@@ -75,4 +75,9 @@ public class DepartmentController {
   public List<Department> searchDepartmentsByName(@RequestParam String department_name) {
     return departmentRepository.findByDepartmentNameContainingAndNotDeleted(department_name);
   }
+
+  @GetMapping("/departments/asc")
+  public List<Department> getAllDepartmentsAsc() {
+    return departmentRepository.getAllExistingDepartmentsAsc();
+  }
 }

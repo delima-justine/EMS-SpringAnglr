@@ -83,4 +83,9 @@ public class SectionController {
   public List<Section> searchSectionsByCode(@RequestParam String keyword) {
     return sectionRepository.searchSectionsByCode(keyword);
   }
+
+  @GetMapping("/sections/asc")
+  public List<Section> getSectionsAsc() {
+    return sectionRepository.findAllActiveSectionsAsc();
+  }
 }

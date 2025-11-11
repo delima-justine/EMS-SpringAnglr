@@ -13,6 +13,9 @@ public interface DepartmentRepository extends JpaRepository<Department, Integer>
   @Query("SELECT d FROM Department d WHERE d.isDeleted = false ORDER BY d.departmentId DESC")
   List<Department> getAllExistingDepartments();
 
+  @Query("SELECT d FROM Department d WHERE d.isDeleted = false ORDER BY d.departmentId ASC")
+  List<Department> getAllExistingDepartmentsAsc();
+
   @Query(value = "SELECT * FROM tbl_department WHERE dept_name LIKE CONCAT('%', :department_name, '%') AND is_deleted = 0", nativeQuery = true)
   List<Department> findByDepartmentNameContainingAndNotDeleted(String department_name);
 

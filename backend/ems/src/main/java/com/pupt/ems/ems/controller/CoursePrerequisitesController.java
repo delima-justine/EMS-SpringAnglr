@@ -58,4 +58,9 @@ public class CoursePrerequisitesController {
     response.put("deleted", rowsUpdated > 0);
     return ResponseEntity.ok(response);
   }
+
+  @GetMapping(value = "/course-prerequisites/asc")
+  public List<CoursePrerequisite> getCoursePrerequisitesAsc() {
+    return coursePrerequisiteRepository.getCoursePrerequisitesAsc();
+  }
 }

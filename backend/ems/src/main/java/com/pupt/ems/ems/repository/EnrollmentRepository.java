@@ -14,6 +14,9 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, Integer>
   @Query("SELECT e FROM Enrollment e WHERE e.isDeleted = false ORDER BY e.enrollmentId DESC")
   List<Enrollment> findAllActiveEnrollments();
 
+  @Query("SELECT e FROM Enrollment e WHERE e.isDeleted = false ORDER BY e.enrollmentId ASC")
+  List<Enrollment> findAllActiveEnrollmentsAsc();
+
   @Query(value = "SELECT * FROM tbl_enrollment WHERE student_id LIKE CONCAT('%', :student_id, '%') AND is_deleted = false", nativeQuery = true)
   List<Enrollment> findByStudentIdContainingAndNotDeleted(String student_id);
 

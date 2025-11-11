@@ -81,4 +81,9 @@ public class EnrollmentController {
   public List<Enrollment> searchEnrollmentsByStudentId(@RequestParam String student_id) {
     return enrollmentRepository.findByStudentIdContainingAndNotDeleted(student_id);
   }
+
+  @GetMapping("/enrollments/asc")
+  public List<Enrollment> getAllEnrollmentsAsc() {
+    return enrollmentRepository.findAllActiveEnrollmentsAsc();
+  }
 }

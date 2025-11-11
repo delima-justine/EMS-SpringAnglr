@@ -77,4 +77,9 @@ public class RoomController {
   public List<Room> searchRooms(@RequestParam String keyword) {
     return roomRepository.searchRoomsByBuildingOrCode(keyword);
   }
+
+  @GetMapping("/rooms/asc")
+  public List<Room> getRoomsAsc() {
+    return roomRepository.findAllActiveRoomsAsc();
+  }
 }

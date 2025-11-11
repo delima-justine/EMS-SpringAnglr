@@ -14,6 +14,9 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
   @Query("SELECT s FROM Student s WHERE s.isDeleted = false ORDER BY s.studentId DESC")
   List<Student> findAllActiveStudents();
 
+    @Query("SELECT s FROM Student s WHERE s.isDeleted = false ORDER BY s.studentId ASC")
+  List<Student> findAllActiveStudentsAsc();
+
   @Query(value = "SELECT * FROM tbl_student WHERE CONCAT(first_name, ' ', middle_name, ' ', last_name) LIKE CONCAT('%', ?1, '%') AND is_deleted = false", nativeQuery = true)
   List<Student> searchStudentsByName(String keyword);
 

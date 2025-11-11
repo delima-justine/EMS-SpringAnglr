@@ -14,6 +14,9 @@ public interface ProgramRepository extends JpaRepository<Program, Integer> {
   @Query("SELECT p FROM Program p WHERE p.isDeleted = false ORDER BY p.programId DESC")
   List<Program> getAllExistingPrograms();
 
+  @Query("SELECT p FROM Program p WHERE p.isDeleted = false ORDER BY p.programId ASC")
+  List<Program> getAllExistingProgramsAsc();
+
   @Query(
     value = "SELECT * FROM tbl_program WHERE (program_code LIKE CONCAT('%', ?1, '%') OR program_name LIKE CONCAT('%', ?1, '%')) AND is_deleted = false", nativeQuery = true)
     List<Program> searchProgramsByCodeOrName(String keyword); 

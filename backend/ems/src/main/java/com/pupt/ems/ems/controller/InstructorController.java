@@ -80,4 +80,9 @@ public class InstructorController {
   public List<Instructor> searchInstructorsByName(@RequestParam String name) {
     return instructorRepository.findByFullNameContainingNative(name);
   }
+
+  @GetMapping("/instructors/asc")
+  public List<Instructor> getAllInstructorsAsc() {
+    return instructorRepository.getAllExistingInstructorsAsc();
+  }
 }

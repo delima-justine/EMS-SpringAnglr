@@ -10,8 +10,11 @@ import jakarta.transaction.Transactional;
 
 public interface CoursePrerequisiteRepository extends JpaRepository<CoursePrerequisite, CoursePrerequisiteId> {
 
-  @Query("SELECT c FROM CoursePrerequisite c WHERE c.isDeleted = 0")
+  @Query("SELECT c FROM CoursePrerequisite c WHERE c.isDeleted = 0 ORDER BY c.id.courseId DESC")
   List<CoursePrerequisite> getCoursePrerequisites();
+
+  @Query("SELECT c FROM CoursePrerequisite c WHERE c.isDeleted = 0 ORDER BY c.id.courseId ASC")
+  List<CoursePrerequisite> getCoursePrerequisitesAsc();
 
   List<CoursePrerequisite> findByIdCourseId(Integer courseId);
 
