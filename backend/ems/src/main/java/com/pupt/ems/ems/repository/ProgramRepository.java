@@ -14,6 +14,10 @@ public interface ProgramRepository extends JpaRepository<Program, Integer> {
   @Query("SELECT p FROM Program p WHERE p.isDeleted = false")
   List<Program> getAllExistingPrograms();
 
+  @Query(
+    value = "SELECT * FROM tbl_program WHERE (program_code LIKE CONCAT('%', ?1, '%') OR program_name LIKE CONCAT('%', ?1, '%')) AND is_deleted = false", nativeQuery = true)
+    List<Program> searchProgramsByCodeOrName(String keyword); 
+
   // Soft Delete by Program ID
   @Modifying
   @Transactional

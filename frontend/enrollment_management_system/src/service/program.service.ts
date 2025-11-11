@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Program } from '../models/ems.model';
-import { Observable } from 'rxjs';
+import { Observable, ObservableLike } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -28,5 +28,10 @@ export class ProgramService {
 
   deleteProgram(programId: number): Observable<Program> {
     return this.http.delete<Program>(`${this.programUrl}/${programId}`);
+  }
+
+  searchPrograms(keyword: string): Observable<Program[]> {
+    const params = new HttpParams().set('keyword', keyword);
+    return this.http.get<Program[]>(`${this.programUrl}/search`, { params });
   }
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.pupt.ems.ems.exception.ResourceNotFoundException;
 import com.pupt.ems.ems.model.Program;
@@ -67,5 +68,10 @@ public class ProgramController {
   public ResponseEntity<Map<String, Boolean>> deleteProgram(@PathVariable Integer id) {
     programRepository.softDeleteById(id);
     return ResponseEntity.ok(Map.of("deleted", Boolean.TRUE));
+  }
+
+  @GetMapping("/programs/search")
+  public List<Program> searchPrograms(@RequestParam String keyword) {
+    return programRepository.searchProgramsByCodeOrName(keyword);
   }
 }

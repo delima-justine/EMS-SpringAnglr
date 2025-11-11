@@ -44,4 +44,11 @@ export class ProgramsPage implements OnInit {
       program.programId === updatedProgram.programId ? updatedProgram : program
     ));
   }
+
+  searchPrograms(keyword: string) {
+    this.programService.searchPrograms(keyword)
+      .subscribe((searchedPrograms) => {
+        this.programs.set(searchedPrograms);
+    });
+  }
 }
