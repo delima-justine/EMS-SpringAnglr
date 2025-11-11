@@ -34,4 +34,8 @@ export class Backend {
     const params = new HttpParams().set('course_title', query);
     return this.http.get<Course[]>(`${this.courseUrl}/search`, { params });
   }
+  
+  sortCoursesAsc(): Observable<Course[]> {
+    return this.http.get<Course[]>(`${this.courseUrl}/asc`);
+  }
 }

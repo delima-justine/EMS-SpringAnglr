@@ -46,3 +46,15 @@ table.courses-table thead {
   flex-direction: row;
   gap: 1em;
 }
+
+.top-actions-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.search-sort-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+}

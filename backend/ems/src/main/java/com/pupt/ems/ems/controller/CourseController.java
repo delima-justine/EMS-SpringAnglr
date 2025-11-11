@@ -86,4 +86,10 @@ public class CourseController {
   public List<Course> searchCoursesByTitle(@RequestParam String course_title) {
     return courseRepository.findByCourseTitleContainingAndNotDeleted(course_title);
   }
+
+  // Get all courses ascendingly
+  @GetMapping(value = "/courses/asc")
+  public List<Course> getAllCoursesAsc() {
+    return courseRepository.getAllExistingCoursesAsc();
+  }
 }

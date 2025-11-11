@@ -1,25 +1,19 @@
-import { AfterViewInit, Component, inject, OnChanges, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, OnChanges, OnInit, signal, ViewChild } from '@angular/core';
 import { TopNav } from "../top-nav/top-nav";
 import { Backend } from '../../service/backend';
 import { Course } from '../../models/ems.model';
-import { 
-        ReactiveFormsModule,
-        FormGroup,
-        FormBuilder,
-        FormControl,
-        Validators
-      } from '@angular/forms';
 import { ActivatedRoute, Router } from "@angular/router";
 import { AddModal } from "./add-modal/add-modal";
 import { UpdateModal } from "./update-modal/update-modal";
 
 @Component({
   selector: 'app-courses-page',
-  imports: [TopNav, ReactiveFormsModule, AddModal, UpdateModal],
+  imports: [TopNav, AddModal, UpdateModal],
   templateUrl: './courses-page.html',
   styleUrl: './courses-page.scss',
 })
 export class CoursesPage implements OnInit, AfterViewInit, OnChanges {
+  @ViewChild('sortOrder') sortOrder!: ElementRef
   courses = signal(<Course[]>[]);
   courseIdSent = signal<number>(0);
   backendService = inject(Backend);
@@ -76,5 +70,24 @@ export class CoursesPage implements OnInit, AfterViewInit, OnChanges {
       .subscribe(coursesData => {
         this.courses.set(coursesData);
     });
+  }
+
+  sortCourses() {
+    const order = this.sortOrder.nativeElement.value;
+
+    switch(order) {
+      case "asc":
+        this.backendService.sortCoursesAsc()
+          .subscribe(coursesData => {
+            this.courses.set(coursesData);
+          });
+        break;
+      case "desc":
+        this.backendService.sortCoursesAsc()
+          .subscribe(coursesData => {
+            this.courses.set(coursesData.reverse());
+          });
+        break;
+    }
   }
 }
