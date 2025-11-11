@@ -37,6 +37,7 @@ export class StudentsPage implements OnInit {
   // Handle the event emitted from AddStudentModal component
   onStudentAdded(newStudent: Student) {
     this.students.update(student => [...student, newStudent]);
+    this.getStudents();
   }
 
   // Handle the event emitted from UpdateStudentModal component
@@ -46,6 +47,7 @@ export class StudentsPage implements OnInit {
         student.studentId === updatedStudent.studentId ? updatedStudent : student
       )
     );
+    this.getStudents();
   }
 
   searchStudents(keyword: string) {

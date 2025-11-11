@@ -94,13 +94,13 @@
 
             <div class="mb-3">
               <label class="form-label" for="student_num">Program ID</label>
-              <select id="programId" class="form-control" formControlName="programId">
+              <select id="programId" class="form-select" formControlName="programId">
                 <option selected disabled>Select Program</option>
-                <option value="4">DIT</option>
-                <option value="5">BSOA</option>
-                <option value="6">BSIT</option>
-                <option value="7">BSECE</option>
-                <option value="8">BSME</option>
+                @for(program of programs(); track $index) {
+                  <option [value]="program.programId">
+                    [{{ program.programId }}]. {{ program.programName }}
+                  </option>
+                }
               </select>
             </div>
           </form>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, output, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, output, signal, ViewChild } from '@angular/core';
 import { 
         ReactiveFormsModule,
         FormControl,
@@ -8,7 +8,8 @@ import {
       } from '@angular/forms';
 import { Modal } from 'bootstrap';
 import { StudentService } from '../../../service/student.service';
-import { Student } from '../../../models/ems.model';
+import { Program, Student } from '../../../models/ems.model';
+import { ProgramService } from '../../../service/program.service';
 
 @Component({
   selector: 'app-add-student-modal',
@@ -16,11 +17,13 @@ import { Student } from '../../../models/ems.model';
   templateUrl: './add-student-modal.html',
   styleUrl: './add-student-modal.scss',
 })
-export class AddStudentModal {
+export class AddStudentModal implements OnInit {
   @ViewChild('addStudentModal') addStudentModal!: ElementRef;
   @ViewChild('openStudentModalButton') openStudentModalButton!: ElementRef;
   studentForm: FormGroup;
   studentService = inject(StudentService);
+  programService = inject(ProgramService);
+  programs = signal(<Program[]>[]);
   response = output<Student>();
 
   constructor(private formBuilder: FormBuilder) {
@@ -36,6 +39,10 @@ export class AddStudentModal {
       programId: [''],
       isDeleted: [false]
     });
+  }
+
+  ngOnInit(): void {
+    this.getPrograms();
   }
 
   openModal() {
@@ -56,6 +63,12 @@ export class AddStudentModal {
         this.response.emit(createdStudent);
         this.studentForm.reset();
         this.closeModal();
+    });
+  }
+
+  getPrograms() {
+    this.programService.sortProgramsAsc().subscribe(programs => {
+      this.programs.set(programs);
     });
   }
 }
