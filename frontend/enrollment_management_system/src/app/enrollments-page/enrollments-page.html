@@ -10,13 +10,13 @@
        <div>
         <input 
           type="text"
-          class="form-control" 
+          class="form-control form-control-sm" 
           placeholder="Search by Student ID"
           (input)="searchEnrollmentsByStudentId(+$event.target.value)"/>
       </div>
 
       <div>
-        <select #sortOrder class="form-select" (change)="sortEnrollments()">
+        <select #sortOrder class="form-select form-select-sm" (change)="sortEnrollments()">
           <option selected disabled>Sort By</option>
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
@@ -59,7 +59,7 @@
               (response)="onEnrollmentUpdated($event)"/>
               <button 
                 (click)="deleteEnrollment(enrollment.enrollmentId!)"
-                class="btn btn-danger">Delete</button>
+                class="btn btn-danger btn-sm">Delete</button>
             </td>
           </tr>
         }

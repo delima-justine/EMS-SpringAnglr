@@ -10,13 +10,13 @@
       <div>
         <input 
           type="text"
-          class="form-control" 
+          class="form-control form-control-sm" 
           placeholder="Search Programs"
           (input)="searchPrograms($event.target.value)"/>
       </div>
 
       <div>
-        <select #sortOrder class="form-select" (change)="sortPrograms()">
+        <select #sortOrder class="form-select form-select-sm" (change)="sortPrograms()">
           <option selected disabled>Sort By</option>
           <option value="asc">Ascending</option>
           <option value="desc">Descending</option>
@@ -54,7 +54,7 @@
                 [programId]="program.programId!"/>
               <button 
                 (click)="deleteProgram(program.programId!)"
-                class="btn btn-danger">Delete</button>
+                class="btn btn-danger btn-sm">Delete</button>
             </td>
           </tr>
         }
